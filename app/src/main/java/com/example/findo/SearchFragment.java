@@ -24,7 +24,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        RelativeLayout btn_check_order = (RelativeLayout) view.findViewById(R.id.checkOrder);
+        RelativeLayout btn_check_order = view.findViewById(R.id.checkOrder);
         btn_check_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,7 +34,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        ImageButton btn_home = (ImageButton) view.findViewById(R.id.findo_logo);
+        ImageButton btn_home = view.findViewById(R.id.findo_logo);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

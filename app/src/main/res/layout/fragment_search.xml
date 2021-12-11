@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,55 +10,90 @@
     android:paddingBottom="10dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/logoEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/headerEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1"/>
 
     <ImageButton
         android:id="@+id/findo_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/findo_logo_small"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@color/white"
-        android:layout_marginLeft="8dp"/>
+        android:src="@drawable/findo_logo_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/logoEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd"/>
 
     <LinearLayout
         android:id="@+id/search_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="8:1.35"
         android:layout_marginLeft="8dp"
         android:background="@drawable/search_rectangle"
-        android:orientation="horizontal"
+        android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:clickable="true">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/logoEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/searchEnd"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:paddingLeft="8dp"/>
+                android:paddingLeft="8dp"
+                android:src="@drawable/ic_search" />
         </RelativeLayout>
 
         <EditText
-            android:layout_width="190dp"
-            android:layout_height="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@null"
             android:hint="F i n D o"
-            android:paddingLeft="6dp"
             android:imeOptions="actionSearch"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:paddingLeft="6dp"
+            android:maxLines="1"/>
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/checkOrder"
-        android:layout_width="110dp"
-        android:layout_height="36dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/button_rectangle"
-        android:layout_marginLeft="8dp">
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="@+id/searchEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,4 +122,4 @@
         </LinearLayout>
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
