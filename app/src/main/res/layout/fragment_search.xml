@@ -122,4 +122,22 @@
         </LinearLayout>
     </RelativeLayout>
 
+<!--    <Button-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:backgroundTint="@color/yellow_main_2"-->
+<!--        android:drawableLeft="@drawable/ic_check_order"-->
+<!--        android:text="Check Order"-->
+<!--        android:textSize="10dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:paddingLeft="1dp"-->
+<!--        android:paddingRight="1dp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/searchEnd"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/headerEnd"-->
+<!--        />-->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

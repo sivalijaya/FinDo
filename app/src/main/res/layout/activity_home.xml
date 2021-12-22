@@ -12,13 +12,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
+<!--    commented because need data-->
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginTop="14dp"-->
+<!--        android:layout_below="@+id/header_search">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/title_wording"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Find Your Best Gift"/>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+<!--    </ScrollView>-->
+
+<!--    image view for sample-->
+    <ImageView
+        android:id="@+id/testphoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/header_search"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="14dp"/>
+        android:layout_height="match_parent"/>
 
     <ImageButton
         android:id="@+id/photo"
