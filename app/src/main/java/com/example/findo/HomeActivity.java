@@ -4,6 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,6 +18,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.findo.adapter.ItemListAdapter;
+import com.example.findo.model.Product;
+
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final int CAMERA_PERMISSION_CODE = 1;
@@ -22,11 +30,14 @@ public class HomeActivity extends AppCompatActivity {
 
     ImageView iv_photo;
 
+    private ArrayList<Product> mproducts = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //just testing bitmap
         ImageButton btn_photo = findViewById(R.id.photo);
         iv_photo = findViewById(R.id.testphoto);
 
@@ -45,6 +56,19 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        RecyclerView rvProducts = findViewById(R.id.recyclerview_home);
+
+        mproducts.clear();
+        mproducts.add(new Product(1, 1, "Sepatu", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
+        mproducts.add(new Product(2, 1, "Sepatu aDIDAS", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
+        mproducts.add(new Product(3, 1, "Sepatu aDIDASs", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
+        mproducts.add(new Product(4, 1, "Sepatu aDIDASss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
+        mproducts.add(new Product(5, 1, "Sepatu aDIDASsss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
+
+        ItemListAdapter adapter = new ItemListAdapter(mproducts);
+        rvProducts.setAdapter(adapter);
+        rvProducts.setLayoutManager(new GridLayoutManager(this,2));
     }
 
     @Override

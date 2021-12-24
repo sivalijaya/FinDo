@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    android:layout_margin="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="title"
-            android:textSize="26dp"
+            android:textSize="20dp"
             android:lines="2"/>
 
         <LinearLayout
@@ -38,41 +39,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp "
-                android:textSize="40dp"/>
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100.000"
-                android:textSize="40dp"
+                android:textSize="24dp"
                 android:textStyle="bold"/>
         </LinearLayout>
 x
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="16dp"
                 android:adjustViewBounds="true"
+                android:layout_gravity="bottom"
                 android:src="@drawable/ic_clarity_shopping_cart_solid_alerted"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sold "
-                android:textSize="24dp"
-                android:layout_marginLeft="4dp"/>
+                android:textSize="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/total_sold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="102"
-                android:textSize="24dp"/>
+                android:textSize="16dp"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
 

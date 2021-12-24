@@ -3,16 +3,20 @@ package com.example.findo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class SearchFragment extends Fragment {
 
@@ -35,16 +39,42 @@ public class SearchFragment extends Fragment {
         });
 
         ImageButton btn_home = view.findViewById(R.id.findo_logo);
+
+        if(getActivity().getClass().toString().equals(HomeActivity.class.toString())){
+            btn_home.setImageDrawable(ContextCompat.getDrawable(view.getContext(), R.drawable.findo_logo_small));
+        }else{
+            btn_home.setImageDrawable(ContextCompat.getDrawable(view.getContext(), R.drawable.ic_baseline_arrow_back_36));
+        }
+
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().toString().equals(HomeActivity.class.toString())){
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
 
         //listener when editText clicked search/enter
+        EditText et_search = view.findViewById(R.id.et_search);
+        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                try {
+                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                        intent.putExtra("searchValue", et_search.getText().toString());
+                        et_search.setText("");
+                        Log.d("intent", "onEditorAction: " + intent.getExtras().toString());
+                        startActivity(intent);
+                        return true;
+                    }
+                }catch (Exception e){
+
+                }
+                return false;
+            }
+        });
+
     }
 }

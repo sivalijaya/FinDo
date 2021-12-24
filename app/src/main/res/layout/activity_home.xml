@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp">
 
     <fragment
         android:name="com.example.findo.SearchFragment"
@@ -13,39 +15,53 @@
         android:layout_height="wrap_content" />
 
 <!--    commented because need data-->
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginTop="14dp"-->
-<!--        android:layout_below="@+id/header_search">-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/title_wording"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Find Your Best Gift"/>-->
+    <TextView
+        android:id="@+id/title_wording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Your Best Gift"
+        android:layout_below="@id/header_search"/>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"/>-->
-<!--    </ScrollView>-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="76dp"
+        android:clipToPadding="false"
+        android:layout_below="@id/title_wording" />
+
 
 <!--    image view for sample-->
     <ImageView
         android:id="@+id/testphoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 
-    <ImageButton
+
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/photo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/button_cycle"-->
+<!--        android:src="@drawable/ic_baseline_photo_camera"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginBottom="10dp"/>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_cycle"
         android:src="@drawable/ic_baseline_photo_camera"
+        android:backgroundTint="@color/yellow_main_2"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        />
 
 </RelativeLayout>
