@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "646165394193",
+    "project_id": "findo-d605f",
+    "storage_bucket": "findo-d605f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646165394193:android:0b6f67ebfb6f2bb63292b0",
+        "android_client_info": {
+          "package_name": "com.example.findo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646165394193-0nud2peh4magds3v8gh8irq69fdkv23d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaE0ZAsK3mpsMKgFuM6usUmvZ020GYOIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646165394193-0nud2peh4magds3v8gh8irq69fdkv23d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

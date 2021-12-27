@@ -1,11 +1,11 @@
 package com.example.findo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
@@ -17,11 +17,22 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.findo.adapter.ItemListAdapter;
 import com.example.findo.model.Product;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabel;
+import com.google.mlkit.vision.label.ImageLabeler;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -59,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
 
         RecyclerView rvProducts = findViewById(R.id.recyclerview_home);
 
+        //dummy data
         mproducts.clear();
         mproducts.add(new Product(1, 1, "Sepatu", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
         mproducts.add(new Product(2, 1, "Sepatu aDIDAS", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
@@ -77,7 +89,9 @@ public class HomeActivity extends AppCompatActivity {
         if(requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK && data != null){
             Bundle bundle = data.getExtras();
             Bitmap finalPhoto = (Bitmap) bundle.get("data");
-            iv_photo.setImageBitmap(finalPhoto);
+            Intent intent = new Intent(this, ArResultActivity.class);
+            intent.putExtra("data", finalPhoto);
+            startActivity(intent);
         }
     }
 }
