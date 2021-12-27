@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.findo.ArResultActivity;
 import com.example.findo.R;
 import com.example.findo.model.Product;
+import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.mlkit.vision.label.ImageLabel;
 
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class ArResultAdapter extends RecyclerView.Adapter<ArResultAdapter.ViewHolder>{
 
-    private List<ImageLabel> mImageLabel = new ArrayList();
+    private List<FirebaseVisionImageLabel> mImageLabel = new ArrayList();
     private ArListResultListener mArListResultListener;
 
     @Override
@@ -45,7 +46,7 @@ public class ArResultAdapter extends RecyclerView.Adapter<ArResultAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ImageLabel imageLabel = mImageLabel.get(position);
+        FirebaseVisionImageLabel imageLabel = mImageLabel.get(position);
 
 
         TextView txt_itemName = holder.itemName;
@@ -92,7 +93,7 @@ public class ArResultAdapter extends RecyclerView.Adapter<ArResultAdapter.ViewHo
         }
     }
 
-    public ArResultAdapter(List<ImageLabel> mImageLabel, ArListResultListener mArListResultListener) {
+    public ArResultAdapter(List<FirebaseVisionImageLabel> mImageLabel, ArListResultListener mArListResultListener) {
         this.mImageLabel = mImageLabel;
         this.mArListResultListener = mArListResultListener;
     }
