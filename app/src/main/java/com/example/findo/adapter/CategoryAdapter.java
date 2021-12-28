@@ -2,11 +2,13 @@ package com.example.findo.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,16 +16,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findo.R;
+import com.example.findo.SearchResultActivity;
 import com.example.findo.model.ProductCategory;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> implements ItemListAdapter.ItemListAdapterListener {
 
     private List<ProductCategory> mProductCategories;
     private Context context;
+    private CategoryAdapterListener mCategoryAdapterListener;
 
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,7 +38,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         View productCategoryView = inflater.inflate(R.layout.layout_listcategory, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(productCategoryView);
+        ViewHolder viewHolder = new ViewHolder(productCategoryView, mCategoryAdapterListener);
         return viewHolder;
     }
 
@@ -60,7 +64,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         r.getDisplayMetrics()
                 );
                 int width = (int) (cv.getMeasuredWidth() - px);
-                ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), (int) (width / 2.4));
+                ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), (int) (width / 2.4), CategoryAdapter.this);
 
                 rv_itemCategory.setAdapter(adapter);
                 rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -77,23 +81,46 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return mProductCategories.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void itemListAdapterClick(int position) {
+        //todo intent to product detail
+        Log.d("test", "arListResultClick: " + position);
+        Toast.makeText(context.getApplicationContext(), position + "System is busy!", Toast.LENGTH_SHORT).show();
+    }
 
-        public TextView tv_categoryTitle;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public TextView tv_categoryTitle, btn_viewMore;
         public RecyclerView rv_itemCategory;
         public CardView rl_homeActivityContainer;
+        public CategoryAdapterListener categoryAdapterListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, CategoryAdapterListener categoryAdapterListener) {
             super(itemView);
 
             tv_categoryTitle = itemView.findViewById(R.id.tv_categoryTitle);
+            btn_viewMore = itemView.findViewById(R.id.btn_viewMore);
             rv_itemCategory = itemView.findViewById(R.id.rv_itemCategory);
             rl_homeActivityContainer = itemView.findViewById(R.id.categoryLayoutActivity);
+            this.categoryAdapterListener = categoryAdapterListener;
+
+            btn_viewMore.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            categoryAdapterListener.categoryAdapterClick(getAdapterPosition());
         }
     }
 
-    public CategoryAdapter(List<ProductCategory> mProductCategory, Context context) {
+    public CategoryAdapter(List<ProductCategory> mProductCategory, Context context, CategoryAdapterListener mCategoryAdapterListener) {
         this.mProductCategories = mProductCategory;
         this.context = context;
+        this.mCategoryAdapterListener = mCategoryAdapterListener;
+
+    }
+
+    public interface CategoryAdapterListener {
+        void categoryAdapterClick(int position);
     }
 }

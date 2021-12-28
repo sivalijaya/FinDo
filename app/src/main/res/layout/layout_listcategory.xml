@@ -24,7 +24,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -33,17 +33,20 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="Shoes"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="6dp"/>
 
             <TextView
+                android:id="@+id/btn_viewMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="12dp"
                 android:text="view more >"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:clickable="true"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

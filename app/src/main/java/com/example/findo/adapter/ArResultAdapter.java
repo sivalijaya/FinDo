@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ArResultAdapter extends RecyclerView.Adapter<ArResultAdapter.ViewHolder> {
 
-    private List<FirebaseVisionImageLabel> mImageLabel = new ArrayList();
+    private List<FirebaseVisionImageLabel> mImageLabel;
     private ArListResultListener mArListResultListener;
 
     @Override

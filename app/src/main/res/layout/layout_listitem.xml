@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:grid="http://schemas.android.com/apk/res-auto"
     android:layout_width="150dp"
-    android:layout_height="270dp"
+    android:layout_height="250dp"
     android:layout_margin="6dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
@@ -31,7 +31,7 @@
             android:layout_marginTop="16dp"
             android:lines="2"
             android:text="title"
-            android:textSize="16dp" />
+            android:textSize="12dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,14 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Rp "
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100.000"
-                android:textSize="24dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -72,7 +72,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
                 android:text="sold "
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/total_sold"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="102"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
 

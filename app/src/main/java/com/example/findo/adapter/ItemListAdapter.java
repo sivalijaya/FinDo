@@ -18,6 +18,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     private List<Product> mProducts;
     private int width;
+    private ItemListAdapterListener mItemListAdapterListener;
 
     @Override
     public ItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,7 +30,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         productView.getLayoutParams().width = width;
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(productView);
+        ViewHolder viewHolder = new ViewHolder(productView, mItemListAdapterListener);
         return viewHolder;
     }
 
@@ -72,23 +73,37 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         return mProducts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView productImage;
         public TextView productTitle, productPrice, total_sold;
+        public ItemListAdapterListener itemListAdapterListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, ItemListAdapterListener itemListAdapterListener) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.product_image);
             productTitle = itemView.findViewById(R.id.product_title);
             productPrice = itemView.findViewById(R.id.price);
             total_sold = itemView.findViewById(R.id.total_sold);
+            this.itemListAdapterListener = itemListAdapterListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemListAdapterListener.itemListAdapterClick(getAdapterPosition());
         }
     }
 
-    public ItemListAdapter(List<Product> products, int width) {
+    public ItemListAdapter(List<Product> products, int width, ItemListAdapterListener mItemListAdapterListener) {
         mProducts = products;
         this.width = width;
+        this.mItemListAdapterListener = mItemListAdapterListener;
+    }
+
+    public interface ItemListAdapterListener {
+        void itemListAdapterClick(int position);
     }
 }

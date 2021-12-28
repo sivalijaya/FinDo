@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ import com.example.findo.model.ProductCategory;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements CategoryAdapter.CategoryAdapterListener {
 
     private static final int CAMERA_PERMISSION_CODE = 1;
     private static final int CAMERA_REQUEST_CODE = 2;
@@ -74,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         mproductcategories.add(new ProductCategory(3, "electronic", mproducts));
 
 //        ItemListAdapter adapter = new ItemListAdapter(mproducts);
-        CategoryAdapter adapter = new CategoryAdapter(mproductcategories, this);
+        CategoryAdapter adapter = new CategoryAdapter(mproductcategories, this, this);
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //        rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
@@ -90,5 +91,13 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra("data", finalPhoto);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void categoryAdapterClick(int position) {
+        Log.d("test", "arListResultClick: " + position);
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putExtra("searchValue", mproductcategories.get(position).getName());
+        startActivity(intent);
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,7 +66,7 @@ public class ArResultActivity extends AppCompatActivity implements ArResultAdapt
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Task failed with an exception
-                        // ...
+                        Toast.makeText(ArResultActivity.this, "System is busy!", Toast.LENGTH_SHORT).show();
                     }
                 });
 

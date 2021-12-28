@@ -1,10 +1,13 @@
 package com.example.findo;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,7 +18,7 @@ import com.example.findo.model.Product;
 
 import java.util.ArrayList;
 
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends AppCompatActivity implements ItemListAdapter.ItemListAdapterListener {
 
     private ArrayList<Product> products = new ArrayList<>();
     RecyclerView rv;
@@ -49,7 +52,7 @@ public class SearchResultActivity extends AppCompatActivity {
                         r.getDisplayMetrics()
                 );
                 width = (int) (rl.getMeasuredWidth() - px);
-                ItemListAdapter adapter = new ItemListAdapter(products, width / 2);
+                ItemListAdapter adapter = new ItemListAdapter(products, width / 2, SearchResultActivity.this);
 
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(new GridLayoutManager(SearchResultActivity.this, 2));
@@ -60,5 +63,12 @@ public class SearchResultActivity extends AppCompatActivity {
 //        rvLeft.setLayoutManager(new LinearLayoutManager(this));
 //        rvRight.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    @Override
+    public void itemListAdapterClick(int position) {
+        //todo intent to product detail
+        Log.d("test", "arListResultClick: " + position);
+        Toast.makeText(SearchResultActivity.this, position + "System is busy!", Toast.LENGTH_SHORT).show();
     }
 }
