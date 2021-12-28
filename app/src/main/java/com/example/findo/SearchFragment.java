@@ -1,11 +1,5 @@
 package com.example.findo;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,10 +12,13 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 public class SearchFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search, parent, false);
     }
 
@@ -40,16 +37,16 @@ public class SearchFragment extends Fragment {
 
         ImageButton btn_home = view.findViewById(R.id.findo_logo);
 
-        if(getActivity().getClass().toString().equals(HomeActivity.class.toString())){
+        if (getActivity().getClass().toString().equals(HomeActivity.class.toString())) {
             btn_home.setImageDrawable(ContextCompat.getDrawable(view.getContext(), R.drawable.findo_logo_small));
-        }else{
+        } else {
             btn_home.setImageDrawable(ContextCompat.getDrawable(view.getContext(), R.drawable.ic_baseline_arrow_back_36));
         }
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!getActivity().getClass().toString().equals(HomeActivity.class.toString())){
+                if (!getActivity().getClass().toString().equals(HomeActivity.class.toString())) {
                     getActivity().finish();
                 }
             }
@@ -69,7 +66,7 @@ public class SearchFragment extends Fragment {
                         startActivity(intent);
                         return true;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
                 return false;

@@ -1,14 +1,11 @@
 package com.example.findo;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.example.findo.adapter.ItemListAdapter;
 import com.example.findo.model.Product;
@@ -37,7 +34,7 @@ public class SearchResultActivity extends AppCompatActivity {
         ItemListAdapter adapter = new ItemListAdapter(products);
 
         rv.setAdapter(adapter);
-        rv.setLayoutManager(new GridLayoutManager(this,2));
+        rv.setLayoutManager(new GridLayoutManager(this, 2));
 
 //        rvLeft.setLayoutManager(new LinearLayoutManager(this));
 //        rvRight.setLayoutManager(new LinearLayoutManager(this));

@@ -2,14 +2,16 @@ package com.example.findo.model;
 
 public class ProductCategory {
     private int id;
-    private int name;
+    private String name;
+    private Product product;
 
     public ProductCategory() {
     }
 
-    public ProductCategory(int id, int name) {
+    public ProductCategory(int id, String name, Product product) {
         this.id = id;
         this.name = name;
+        this.product = product;
     }
 
     public int getId() {
@@ -20,11 +22,19 @@ public class ProductCategory {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

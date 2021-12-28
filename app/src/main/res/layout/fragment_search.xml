@@ -1,62 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".SearchFragment"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="10dp"
+    tools:context=".SearchFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/logoEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/searchEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7"/>
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/headerEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="1" />
 
     <ImageButton
         android:id="@+id/findo_logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
         android:background="@color/white"
         android:src="@drawable/findo_logo_small"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/logoEnd"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/headerEnd"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/search_bar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="8:1.35"
         android:layout_marginLeft="8dp"
         android:background="@drawable/search_rectangle"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/logoEnd"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd"
+        app:layout_constraintDimensionRatio="8:1.35"
         app:layout_constraintEnd_toEndOf="@+id/searchEnd"
-        app:layout_constraintBottom_toBottomOf="@id/headerEnd">
+        app:layout_constraintStart_toStartOf="@+id/logoEnd"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -79,32 +78,33 @@
             android:hint="F i n D o"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:paddingLeft="6dp"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:paddingLeft="6dp" />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/checkOrder"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/button_rectangle"
         android:layout_marginLeft="8dp"
-        app:layout_constraintStart_toStartOf="@+id/searchEnd"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/button_rectangle"
+        app:layout_constraintBottom_toBottomOf="@id/headerEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/headerEnd">
+        app:layout_constraintStart_toStartOf="@+id/searchEnd"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_check_order"/>
+                android:background="@drawable/ic_check_order" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -112,31 +112,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:text="Check Order"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="14dp"
-                    android:layout_centerVertical="true"/>
+                    android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 
-<!--    <Button-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginLeft="8dp"-->
-<!--        android:backgroundTint="@color/yellow_main_2"-->
-<!--        android:drawableLeft="@drawable/ic_check_order"-->
-<!--        android:text="Check Order"-->
-<!--        android:textSize="10dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:paddingLeft="1dp"-->
-<!--        android:paddingRight="1dp"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/searchEnd"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/headerEnd"-->
-<!--        />-->
+    <!--    <Button-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginLeft="8dp"-->
+    <!--        android:backgroundTint="@color/yellow_main_2"-->
+    <!--        android:drawableLeft="@drawable/ic_check_order"-->
+    <!--        android:text="Check Order"-->
+    <!--        android:textSize="10dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:paddingLeft="1dp"-->
+    <!--        android:paddingRight="1dp"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/searchEnd"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/headerEnd"-->
+    <!--        />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

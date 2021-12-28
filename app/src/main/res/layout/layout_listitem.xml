@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="6dp"
     app:cardCornerRadius="10dp"
-    android:layout_margin="6dp">
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="6dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/product_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/findo_logo"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/findo_logo" />
 
         <TextView
             android:id="@+id/product_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:lines="2"
             android:text="title"
-            android:textSize="20dp"
-            android:lines="2"/>
+            android:textSize="16dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Rp "
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/price"
@@ -47,39 +48,39 @@
                 android:layout_height="wrap_content"
                 android:text="100.000"
                 android:textSize="24dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
-x
+        x
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"
-                android:adjustViewBounds="true"
+                android:layout_height="14dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ic_clarity_shopping_cart_solid_alerted"/>
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_clarity_shopping_cart_solid_alerted" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="sold "
-                android:textSize="16dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
-                android:layout_gravity="center"/>
+                android:text="sold "
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/total_sold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="102"
-                android:textSize="16dp"
-                android:layout_gravity="center"/>
+                android:textSize="14dp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
