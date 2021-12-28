@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findo.R;
-import com.example.findo.SearchResultActivity;
 import com.example.findo.model.ProductCategory;
 
 import org.jetbrains.annotations.NotNull;

@@ -14,7 +14,6 @@ import com.example.findo.R;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArResultAdapter extends RecyclerView.Adapter<ArResultAdapter.ViewHolder> {

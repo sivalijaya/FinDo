@@ -14,12 +14,10 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findo.adapter.CategoryAdapter;
-import com.example.findo.adapter.ItemListAdapter;
 import com.example.findo.model.Product;
 import com.example.findo.model.ProductCategory;
 
