@@ -1,6 +1,9 @@
 package com.example.findo;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,8 @@ import java.util.ArrayList;
 public class SearchResultActivity extends AppCompatActivity {
 
     private ArrayList<Product> products = new ArrayList<>();
+    RecyclerView rv;
+    int width = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +31,30 @@ public class SearchResultActivity extends AppCompatActivity {
 
         tv_title_result.setText(bundle.getString("searchValue"));
 
-        RecyclerView rv = findViewById(R.id.recyclerviewtesti33);
+        rv = findViewById(R.id.rv_searchResult);
 
         products.add(new Product(1, 1, "Sepatu", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
         products.add(new Product(2, 1, "SepatuAAA", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
 
-        ItemListAdapter adapter = new ItemListAdapter(products);
 
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new GridLayoutManager(this, 2));
+        RelativeLayout rl = findViewById(R.id.search_activity_container);
+        rl.post(new Runnable() {
+            @Override
+            public void run() {
+                float dip = 26f;
+                Resources r = getResources();
+                float px = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        dip,
+                        r.getDisplayMetrics()
+                );
+                width = (int) (rl.getMeasuredWidth() - px);
+                ItemListAdapter adapter = new ItemListAdapter(products, width / 2);
+
+                rv.setAdapter(adapter);
+                rv.setLayoutManager(new GridLayoutManager(SearchResultActivity.this, 2));
+            }
+        });
 
 
 //        rvLeft.setLayoutManager(new LinearLayoutManager(this));

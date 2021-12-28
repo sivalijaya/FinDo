@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SearchResultActivity"
     android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp">
+    android:layout_marginLeft="10dp"
+    android:id="@+id/search_activity_container">
 
     <fragment
         android:name="com.example.findo.SearchFragment"
@@ -43,7 +44,7 @@
         android:gravity="center">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerviewtesti33"
+            android:id="@+id/rv_searchResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>

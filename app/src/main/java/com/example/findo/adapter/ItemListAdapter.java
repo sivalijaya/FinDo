@@ -17,6 +17,7 @@ import java.util.List;
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private List<Product> mProducts;
+    private int width;
 
     @Override
     public ItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,6 +26,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         // Inflate the custom layout
         View productView = inflater.inflate(R.layout.layout_listitem, parent, false);
+        productView.getLayoutParams().width = width;
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(productView);
@@ -85,7 +87,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         }
     }
 
-    public ItemListAdapter(List<Product> products) {
+    public ItemListAdapter(List<Product> products, int width) {
         mProducts = products;
+        this.width = width;
     }
 }

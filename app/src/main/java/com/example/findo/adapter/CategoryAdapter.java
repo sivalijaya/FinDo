@@ -1,13 +1,15 @@
 package com.example.findo.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,9 +47,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         RecyclerView rv_itemCategory = holder.rv_itemCategory;
 
         txt_categoryTitle.setText(productCategory.getName());
-        ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct());
-        rv_itemCategory.setAdapter(adapter);
-        rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+
+        CardView cv = holder.rl_homeActivityContainer;
+        cv.post(new Runnable() {
+            @Override
+            public void run() {
+                float dip = 26f;
+                Resources r = holder.itemView.getResources();
+                float px = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        dip,
+                        r.getDisplayMetrics()
+                );
+                int width = (int) (cv.getMeasuredWidth() - px);
+                ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), (int) (width / 2.4));
+
+                rv_itemCategory.setAdapter(adapter);
+                rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            }
+        });
+
+//        ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), 350);
+//        rv_itemCategory.setAdapter(adapter);
+//        rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -59,12 +81,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         public TextView tv_categoryTitle;
         public RecyclerView rv_itemCategory;
+        public CardView rl_homeActivityContainer;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             tv_categoryTitle = itemView.findViewById(R.id.tv_categoryTitle);
             rv_itemCategory = itemView.findViewById(R.id.rv_itemCategory);
+            rl_homeActivityContainer = itemView.findViewById(R.id.categoryLayoutActivity);
         }
     }
 

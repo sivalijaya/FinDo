@@ -9,7 +9,8 @@
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
-    tools:context=".adapter.CategoryAdapter">
+    tools:context=".adapter.CategoryAdapter"
+    android:id="@+id/categoryLayoutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
