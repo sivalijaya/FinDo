@@ -14,10 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findo.adapter.CategoryAdapter;
 import com.example.findo.adapter.ItemListAdapter;
 import com.example.findo.model.Product;
+import com.example.findo.model.ProductCategory;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView iv_photo;
 
     private ArrayList<Product> mproducts = new ArrayList<>();
+    private ArrayList<ProductCategory> mproductcategories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +69,15 @@ public class HomeActivity extends AppCompatActivity {
         mproducts.add(new Product(4, 1, "Sepatu aDIDASss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
         mproducts.add(new Product(5, 1, "Sepatu aDIDASsss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
 
-        ItemListAdapter adapter = new ItemListAdapter(mproducts);
+        mproductcategories.add(new ProductCategory(1, "shoe", mproducts));
+        mproductcategories.add(new ProductCategory(2, "bag", mproducts));
+        mproductcategories.add(new ProductCategory(3, "electronic", mproducts));
+
+//        ItemListAdapter adapter = new ItemListAdapter(mproducts);
+        CategoryAdapter adapter = new CategoryAdapter(mproductcategories, this);
         rvProducts.setAdapter(adapter);
-        rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
+        rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
     @Override

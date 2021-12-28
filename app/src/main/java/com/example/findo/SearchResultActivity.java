@@ -36,6 +36,7 @@ public class SearchResultActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         rv.setLayoutManager(new GridLayoutManager(this, 2));
 
+
 //        rvLeft.setLayoutManager(new LinearLayoutManager(this));
 //        rvRight.setLayoutManager(new LinearLayoutManager(this));
 

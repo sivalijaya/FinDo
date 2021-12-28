@@ -1,17 +1,19 @@
 package com.example.findo.model;
 
+import java.util.ArrayList;
+
 public class ProductCategory {
     private int id;
     private String name;
-    private Product product;
+    private ArrayList<Product> mproduct;
 
     public ProductCategory() {
     }
 
-    public ProductCategory(int id, String name, Product product) {
+    public ProductCategory(int id, String name, ArrayList<Product> product) {
         this.id = id;
         this.name = name;
-        this.product = product;
+        this.mproduct = product;
     }
 
     public int getId() {
@@ -30,11 +32,11 @@ public class ProductCategory {
         this.name = name;
     }
 
-    public Product getProduct() {
-        return product;
+    public ArrayList<Product> getMproduct() {
+        return mproduct;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setMproduct(ArrayList<Product> mproduct) {
+        this.mproduct = mproduct;
     }
 }
