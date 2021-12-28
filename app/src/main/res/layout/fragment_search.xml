@@ -115,7 +115,7 @@
                     android:layout_centerVertical="true"
                     android:text="Check Order"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
+                    android:textSize="12dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
