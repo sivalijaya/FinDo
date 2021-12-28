@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ArResultActivity"
-    android:orientation="vertical"
     android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp">
+    android:layout_marginRight="8dp"
+    android:orientation="vertical"
+    tools:context=".ArResultActivity">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_36"
         android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_baseline_arrow_back_36"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -21,20 +21,20 @@
         android:id="@+id/camera_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true" />
 
     <TextView
         android:id="@+id/string_ar_wording"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="What item you want to search?"
-        android:textSize="24sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_ar_result"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

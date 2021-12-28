@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/categoryLayoutActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
@@ -9,8 +10,7 @@
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
-    tools:context=".adapter.CategoryAdapter"
-    android:id="@+id/categoryLayoutActivity">
+    tools:context=".adapter.CategoryAdapter">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +18,7 @@
         android:layout_marginLeft="6dp"
         android:layout_marginTop="6dp"
         android:layout_marginRight="6dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,10 +31,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_marginLeft="6dp"
                 android:text="Shoes"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="6dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/btn_viewMore"
@@ -44,9 +43,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="12dp"
+                android:clickable="true"
                 android:text="view more >"
-                android:textSize="16sp"
-                android:clickable="true"/>
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -54,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal" />
     </LinearLayout>
 
 
