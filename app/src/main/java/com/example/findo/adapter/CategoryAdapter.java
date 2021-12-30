@@ -27,6 +27,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private List<ProductCategory> mProductCategories;
     private Context context;
     private CategoryAdapterListener mCategoryAdapterListener;
+    private int clickPosition;
 
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -84,7 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void itemListAdapterClick(int position) {
         //todo intent to product detail
         Log.d("test", "arListResultClick: " + position);
-        Toast.makeText(context.getApplicationContext(), position + "System is busy!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), mProductCategories.get(clickPosition).getMproduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -108,6 +109,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
+            clickPosition = getAdapterPosition();
             categoryAdapterListener.categoryAdapterClick(getAdapterPosition());
         }
     }
