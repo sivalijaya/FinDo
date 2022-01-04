@@ -39,7 +39,11 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
         Bundle bundle = getIntent().getExtras();
 
         try {
-            fetchDataFromFirebase(bundle.getString("searchValue"));
+            if (!bundle.getString("searchValueCategory").isEmpty()) {
+                fetchDataFromFirebaseByCategory(bundle.getString("searchValueCategory"));
+            } else {
+                fetchDataFromFirebase(bundle.getString("searchValue"));
+            }
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -77,7 +81,6 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     }
 
     private void fetchDataFromFirebase(String searchValue) {
-        // TODO: 04-Jan-22 need change logic for search
         mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product_category");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -89,6 +92,26 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                             products.add(product);
                         }
                     }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        };
+        mDatabase.addValueEventListener(postListener);
+    }
+
+    private void fetchDataFromFirebaseByCategory(String productCategoryId) {
+        // TODO: 04-Jan-22 need change logic for search
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product_category").child(productCategoryId).child("product");
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+                    Product product = new Product(productSnapshot);
+                    products.add(product);
                 }
             }
 

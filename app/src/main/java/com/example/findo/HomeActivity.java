@@ -107,6 +107,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     public void categoryAdapterClick(int position) {
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchValue", mproductcategories.get(position).getName());
+        intent.putExtra("searchValueCategory", mproductcategories.get(position).getId().toString());
         startActivity(intent);
     }
 }
