@@ -30,7 +30,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //todo change intent to check order
-                Intent intent = new Intent(getActivity(), SplashActivity.class);
+                Intent intent = new Intent(getActivity(), CheckOrderActivity.class);
                 startActivity(intent);
             }
         });
