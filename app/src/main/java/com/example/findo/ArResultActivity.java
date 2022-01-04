@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,14 +33,7 @@ public class ArResultActivity extends AppCompatActivity implements ArResultAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar_result);
 
-        headerHandler();
         configureAndRunImageLabeler();
-    }
-
-    private void headerHandler() {
-        TextView textHeader = findViewById(R.id.textHeader);
-
-        textHeader.setText("AR Result");
     }
 
     private void configureAndRunImageLabeler() {
