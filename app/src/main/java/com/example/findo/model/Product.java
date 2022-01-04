@@ -5,23 +5,25 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class Product {
-    private String id;
+    private Integer id;
     private String name;
-    private String sold;
-    private String price;
-    private String stock;
+    private Integer sold;
+    private Long price;
+    private Integer stock;
     private String description;
     private ArrayList<String> photo;
     private String gender;
+    private String brand;
+    private String shippingFrom;
 
     public Product() {
     }
 
     public Product(DataSnapshot productSnapshot) {
-        this.id = productSnapshot.getKey();
+        this.id = Integer.parseInt(productSnapshot.getKey());
         this.name = productSnapshot.child("name").getValue().toString();
-        this.sold = productSnapshot.child("sold").getValue().toString();
-        this.price = productSnapshot.child("price").getValue().toString();
+        this.sold = Integer.parseInt(productSnapshot.child("sold").getValue().toString());
+        this.price = Long.parseLong(productSnapshot.child("price").getValue().toString());
         ArrayList<String> productImages = new ArrayList<>();
         for (DataSnapshot productImageSnapshot : productSnapshot.child("images").getChildren()) {
             productImages.add(productImageSnapshot.getValue().toString());
@@ -29,7 +31,7 @@ public class Product {
         this.photo = productImages;
     }
 
-    public Product(String id, String name, String sold, String price, ArrayList<String> photo) {
+    public Product(Integer id, String name, Integer sold, Long price, ArrayList<String> photo) {
         this.id = id;
         this.name = name;
         this.sold = sold;
@@ -37,7 +39,7 @@ public class Product {
         this.photo = photo;
     }
 
-    public Product(String id, String name, String sold, String price, String stock, String description, ArrayList<String> photo, String gender) {
+    public Product(Integer id, String name, Integer sold, Long price, Integer stock, String description, ArrayList<String> photo, String gender) {
         this.id = id;
         this.name = name;
         this.sold = sold;
@@ -48,11 +50,11 @@ public class Product {
         this.gender = gender;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -64,27 +66,27 @@ public class Product {
         this.name = name;
     }
 
-    public String getSold() {
+    public Integer getSold() {
         return sold;
     }
 
-    public void setSold(String sold) {
+    public void setSold(Integer sold) {
         this.sold = sold;
     }
 
-    public String getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public String getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

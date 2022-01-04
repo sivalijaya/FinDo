@@ -5,7 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class ProductCategory {
-    private String id;
+    private Integer id;
     private String name;
     private ArrayList<Product> product;
 
@@ -13,7 +13,7 @@ public class ProductCategory {
     }
 
     public ProductCategory(DataSnapshot categorySnapshot) {
-        this.id = categorySnapshot.getKey();
+        this.id = Integer.parseInt(categorySnapshot.getKey());
         this.name = categorySnapshot.child("name").getValue().toString();
         ArrayList<Product> productList = new ArrayList<>();
         for (DataSnapshot productSnapshot : categorySnapshot.child("product").getChildren()) {
@@ -22,17 +22,17 @@ public class ProductCategory {
         this.product = productList;
     }
 
-    public ProductCategory(String id, String name, ArrayList<Product> product) {
+    public ProductCategory(Integer id, String name, ArrayList<Product> product) {
         this.id = id;
         this.name = name;
         this.product = product;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
