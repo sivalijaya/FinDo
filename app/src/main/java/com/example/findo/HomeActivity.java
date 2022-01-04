@@ -6,10 +6,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -18,8 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findo.adapter.CategoryAdapter;
-import com.example.findo.model.Product;
 import com.example.findo.model.ProductCategory;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -28,20 +33,23 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     private static final int CAMERA_PERMISSION_CODE = 1;
     private static final int CAMERA_REQUEST_CODE = 2;
 
-    ImageView iv_photo;
-
-    private ArrayList<Product> mproducts = new ArrayList<>();
     private ArrayList<ProductCategory> mproductcategories = new ArrayList<>();
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //just testing bitmap
-        ImageButton btn_photo = findViewById(R.id.photo);
-        iv_photo = findViewById(R.id.testphoto);
+        // fetch product from Firebase
+        try {
+            fetchDataFromFirebase();
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        ImageButton btn_photo = findViewById(R.id.photo);
         btn_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,24 +67,28 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
         });
 
         RecyclerView rvProducts = findViewById(R.id.recyclerview_home);
-
-        //dummy data
-        mproducts.clear();
-        mproducts.add(new Product(1, 1, "Sepatu", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
-        mproducts.add(new Product(2, 1, "Sepatu aDIDAS", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
-        mproducts.add(new Product(3, 1, "Sepatu aDIDASs", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
-        mproducts.add(new Product(4, 1, "Sepatu aDIDASss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
-        mproducts.add(new Product(5, 1, "Sepatu aDIDASsss", 2, 2, 2, "Adidas", "Jakarta", "hallo hallo", new String[]{"https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg", "https://static.republika.co.id/uploads/images/inpicture_slide/google-_150902081143-333.jpg"}));
-
-        mproductcategories.add(new ProductCategory(1, "shoe", mproducts));
-        mproductcategories.add(new ProductCategory(2, "bag", mproducts));
-        mproductcategories.add(new ProductCategory(3, "electronic", mproducts));
-
-//        ItemListAdapter adapter = new ItemListAdapter(mproducts);
         CategoryAdapter adapter = new CategoryAdapter(mproductcategories, this, this);
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
+    }
+
+    private void fetchDataFromFirebase() {
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product_category");
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot categorySnapshot : snapshot.getChildren()) {
+                    ProductCategory productCategory = new ProductCategory(categorySnapshot);
+                    mproductcategories.add(productCategory);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                Log.d("fdatabase", "onDataChange: " + error.getMessage());
+            }
+        };
+        mDatabase.addValueEventListener(postListener);
     }
 
     @Override
@@ -93,7 +105,6 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
 
     @Override
     public void categoryAdapterClick(int position) {
-        Log.d("test", "arListResultClick: " + position);
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchValue", mproductcategories.get(position).getName());
         startActivity(intent);

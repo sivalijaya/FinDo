@@ -1,47 +1,59 @@
 package com.example.findo.model;
 
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
+
 public class Product {
-    private int id;
-    private int productCategoryId;
+    private String id;
     private String name;
-    private int sold;
-    private int price;
-    private int stock;
-    private String brand;
-    private String shippingFrom;
+    private String sold;
+    private String price;
+    private String stock;
     private String description;
-    private String[] photo;
+    private ArrayList<String> photo;
+    private String gender;
 
     public Product() {
     }
 
-    public Product(int id, int productCategoryId, String name, int sold, int price, int stock, String brand, String shippingFrom, String description, String[] photo) {
+    public Product(DataSnapshot productSnapshot) {
+        this.id = productSnapshot.getKey();
+        this.name = productSnapshot.child("name").getValue().toString();
+        this.sold = productSnapshot.child("sold").getValue().toString();
+        this.price = productSnapshot.child("price").getValue().toString();
+        ArrayList<String> productImages = new ArrayList<>();
+        for (DataSnapshot productImageSnapshot : productSnapshot.child("images").getChildren()) {
+            productImages.add(productImageSnapshot.getValue().toString());
+        }
+        this.photo = productImages;
+    }
+
+    public Product(String id, String name, String sold, String price, ArrayList<String> photo) {
         this.id = id;
-        this.productCategoryId = productCategoryId;
+        this.name = name;
+        this.sold = sold;
+        this.price = price;
+        this.photo = photo;
+    }
+
+    public Product(String id, String name, String sold, String price, String stock, String description, ArrayList<String> photo, String gender) {
+        this.id = id;
         this.name = name;
         this.sold = sold;
         this.price = price;
         this.stock = stock;
-        this.brand = brand;
-        this.shippingFrom = shippingFrom;
         this.description = description;
         this.photo = photo;
+        this.gender = gender;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public int getProductCategoryId() {
-        return productCategoryId;
-    }
-
-    public void setProductCategoryId(int productCategoryId) {
-        this.productCategoryId = productCategoryId;
     }
 
     public String getName() {
@@ -52,44 +64,28 @@ public class Product {
         this.name = name;
     }
 
-    public int getSold() {
+    public String getSold() {
         return sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(String sold) {
         this.sold = sold;
     }
 
-    public long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getShippingFrom() {
-        return shippingFrom;
-    }
-
-    public void setShippingFrom(String shippingFrom) {
-        this.shippingFrom = shippingFrom;
     }
 
     public String getDescription() {
@@ -100,13 +96,19 @@ public class Product {
         this.description = description;
     }
 
-    public String[] getPhoto() {
+    public ArrayList<String> getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String[] photo) {
+    public void setPhoto(ArrayList<String> photo) {
         this.photo = photo;
     }
 
+    public String getGender() {
+        return gender;
+    }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

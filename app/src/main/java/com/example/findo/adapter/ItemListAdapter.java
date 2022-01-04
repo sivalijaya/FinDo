@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findo.R;
 import com.example.findo.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,27 +46,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         ImageView img_productImage = holder.productImage;
 
         txt_productTitle.setText(product.getName());
-        txt_productPrice.setText(Long.toString(product.getPrice()));
-        txt_totalSold.setText(Integer.toString(product.getSold()));
-
-//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//        DatabaseReference databaseReference = firebaseDatabase.getReference();
-//        DatabaseReference getImage = databaseReference.child("image");
-//
-//        getImage.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                String link = snapshot.getValue(String.class);
-//
-//                Picasso.get().load(link).into(img_productImage);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
-//            }
-//        });
-
+        txt_productPrice.setText(product.getPrice());
+        txt_totalSold.setText(product.getSold());
+        Picasso.get().load(product.getPhoto().get(0)).into(img_productImage);
     }
 
     @Override

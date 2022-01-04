@@ -64,16 +64,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         r.getDisplayMetrics()
                 );
                 int width = (int) (cv.getMeasuredWidth() - px);
-                ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), (int) (width / 2.4), CategoryAdapter.this);
+                ItemListAdapter adapter = new ItemListAdapter(productCategory.getProduct(), (int) (width / 2.4), CategoryAdapter.this);
 
                 rv_itemCategory.setAdapter(adapter);
                 rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             }
         });
-
-//        ItemListAdapter adapter = new ItemListAdapter(productCategory.getMproduct(), 350);
-//        rv_itemCategory.setAdapter(adapter);
-//        rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -85,7 +81,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void itemListAdapterClick(int position) {
         //todo intent to product detail
         Log.d("test", "arListResultClick: " + position);
-        Toast.makeText(context.getApplicationContext(), mProductCategories.get(clickPosition).getMproduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), mProductCategories.get(clickPosition).getProduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
