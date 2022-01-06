@@ -26,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SearchResultActivity extends AppCompatActivity implements ItemListAdapter.ItemListAdapterListener {
 
@@ -60,7 +59,6 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
         TextView btn_unisex = findViewById(R.id.btn_unisex);
         TextView btn_popular = findViewById(R.id.btn_popular);
         LinearLayout btn_price = findViewById(R.id.btn_price);
-
 
 
         tv_title_result.setText(bundle.getString("searchValue"));
@@ -161,7 +159,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    if(Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == Integer.parseInt(productCategoryId)){
+                    if (Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == Integer.parseInt(productCategoryId)) {
                         Product product = new Product(productSnapshot);
                         products.add(product);
                     }

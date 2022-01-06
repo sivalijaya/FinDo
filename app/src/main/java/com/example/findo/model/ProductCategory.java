@@ -31,7 +31,7 @@ public class ProductCategory {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    if(Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == Integer.parseInt(categorySnapshot.getKey())){
+                    if (Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == Integer.parseInt(categorySnapshot.getKey())) {
                         productList.add(new Product(productSnapshot));
                         Log.d("debug product name", "onDataChange: " + productSnapshot.getKey());
                     }

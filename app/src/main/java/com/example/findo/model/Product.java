@@ -116,4 +116,20 @@ public class Product {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getShippingFrom() {
+        return shippingFrom;
+    }
+
+    public void setShippingFrom(String shippingFrom) {
+        this.shippingFrom = shippingFrom;
+    }
 }
