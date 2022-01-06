@@ -96,6 +96,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/btn_price"
             android:layout_width="70dp"
             android:layout_height="32dp"
             android:layout_marginRight="8dp"
@@ -107,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="4dp"
-                android:src="@drawable/ic_check_order" />
+                android:src="@drawable/ic_baseline_arrow_downward_24" />
 
             <TextView
                 android:layout_width="match_parent"

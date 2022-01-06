@@ -61,6 +61,7 @@ public class SearchFragment extends Fragment {
                     if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                         Intent intent = new Intent(getActivity(), SearchResultActivity.class);
                         intent.putExtra("searchValue", et_search.getText().toString());
+                        intent.putExtra("searchValueCategory", "");
                         et_search.setText("");
                         Log.d("intent", "onEditorAction: " + intent.getExtras().toString());
                         startActivity(intent);

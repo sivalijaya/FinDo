@@ -29,6 +29,9 @@ public class Product {
             productImages.add(productImageSnapshot.getValue().toString());
         }
         this.photo = productImages;
+        this.gender = productSnapshot.child("gender").getValue().toString();
+        this.brand = productSnapshot.child("brand").getValue().toString();
+        this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();
     }
 
     public Product(Integer id, String name, Integer sold, Long price, ArrayList<String> photo) {
