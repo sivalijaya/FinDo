@@ -12,7 +12,6 @@ public class Product {
     private Integer stock;
     private String description;
     private ArrayList<String> photo;
-    private String gender;
     private String brand;
     private String shippingFrom;
 
@@ -29,7 +28,6 @@ public class Product {
             productImages.add(productImageSnapshot.getValue().toString());
         }
         this.photo = productImages;
-        this.gender = productSnapshot.child("gender").getValue().toString();
         this.brand = productSnapshot.child("brand").getValue().toString();
         this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();
     }
@@ -50,7 +48,6 @@ public class Product {
         this.stock = stock;
         this.description = description;
         this.photo = photo;
-        this.gender = gender;
     }
 
     public Integer getId() {
@@ -107,14 +104,6 @@ public class Product {
 
     public void setPhoto(ArrayList<String> photo) {
         this.photo = photo;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getBrand() {
