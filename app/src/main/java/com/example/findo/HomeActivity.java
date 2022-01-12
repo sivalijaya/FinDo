@@ -35,19 +35,12 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
 
     private ArrayList<ProductCategory> mproductcategories = new ArrayList<>();
     private DatabaseReference mDatabase;
+    CategoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        // fetch product from Firebase
-        try {
-            fetchDataFromFirebase();
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         ImageButton btn_photo = findViewById(R.id.photo);
         btn_photo.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +60,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
         });
 
         RecyclerView rvProducts = findViewById(R.id.recyclerview_home);
-        CategoryAdapter adapter = new CategoryAdapter(mproductcategories, this, this);
+        adapter = new CategoryAdapter(mproductcategories, this, this);
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        fetchDataFromFirebase();
     }
 
     private void fetchDataFromFirebase() {
@@ -81,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
                     ProductCategory productCategory = new ProductCategory(categorySnapshot);
                     mproductcategories.add(productCategory);
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -97,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             Bundle bundle = data.getExtras();
             Bitmap finalPhoto = (Bitmap) bundle.get("data");
-            Intent intent = new Intent(this, ArResultActivity.class);
+            Intent intent = new Intent(this, PhotoResultActivity.class);
             intent.putExtra("data", finalPhoto);
             startActivity(intent);
         }

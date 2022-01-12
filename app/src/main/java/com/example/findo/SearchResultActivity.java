@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,23 +41,10 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
         Bundle bundle = getIntent().getExtras();
 
-        try {
-            if (!bundle.getString("searchValueCategory").isEmpty()) {
-                fetchDataFromFirebaseByCategory(bundle.getString("searchValueCategory"));
-            } else {
-                fetchDataFromFirebase(bundle.getString("searchValue"));
-            }
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         TextView tv_title_result = findViewById(R.id.title_result);
-        TextView btn_male = findViewById(R.id.btn_male);
-        TextView btn_female = findViewById(R.id.btn_female);
-        TextView btn_unisex = findViewById(R.id.btn_unisex);
         TextView btn_popular = findViewById(R.id.btn_popular);
-        LinearLayout btn_price = findViewById(R.id.btn_price);
+        LinearLayout btn_pricedown = findViewById(R.id.btn_pricedown);
+        LinearLayout btn_priceup = findViewById(R.id.btn_priceup);
 
 
         tv_title_result.setText(bundle.getString("searchValue"));
@@ -80,45 +66,12 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(new GridLayoutManager(SearchResultActivity.this, 2));
-            }
-        });
 
-        btn_male.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                products.clear();
-                for (int i = 0; i < temp.size(); i++) {
-                    if (temp.get(i).getGender().toLowerCase().equals("male")) {
-                        products.add(temp.get(i));
-                    }
+                if (!bundle.getString("searchValueCategory").isEmpty()) {
+                    fetchDataFromFirebaseByCategory(bundle.getString("searchValueCategory"));
+                } else {
+                    fetchDataFromFirebase(bundle.getString("searchValue"));
                 }
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        btn_female.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                products.clear();
-                for (int i = 0; i < temp.size(); i++) {
-                    if (temp.get(i).getGender().toLowerCase().equals("female")) {
-                        products.add(temp.get(i));
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        btn_unisex.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                products.clear();
-                for (int i = 0; i < temp.size(); i++) {
-                    if (temp.get(i).getGender().toLowerCase().equals("unisex")) {
-                        products.add(temp.get(i));
-                    }
-                }
-                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -131,6 +84,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     }
 
     private void fetchDataFromFirebase(String searchValue) {
+        products.clear();
         mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -142,6 +96,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                     }
                 }
                 temp = new ArrayList<>(products);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -154,6 +109,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
     private void fetchDataFromFirebaseByCategory(String productCategoryId) {
         // TODO: 04-Jan-22 need change logic for search
+        products.clear();
         mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -165,6 +121,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                     }
                 }
                 temp = new ArrayList<>(products);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

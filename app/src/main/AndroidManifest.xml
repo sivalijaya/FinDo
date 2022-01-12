@@ -3,6 +3,7 @@
     package="com.example.findo">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinDo">
-        <activity android:name=".ArResultActivity"></activity>
+        <activity android:name=".PhotoResultActivity"></activity>
         <activity android:name=".SearchResultActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".CheckOrderActivity" />

@@ -23,11 +23,61 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:id="@+id/btn_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_wording"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/btn_male"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_rectangle_white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Male"
+                android:textColor="@color/yellow_main_2"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_female"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_rectangle_white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Female"
+                android:textColor="@color/yellow_main_2"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_wording"
+        android:layout_below="@id/btn_filter"
         android:clipToPadding="false"
         android:paddingBottom="76dp" />
 

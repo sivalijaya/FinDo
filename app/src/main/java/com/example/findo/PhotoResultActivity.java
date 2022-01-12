@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +25,7 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArResultActivity extends AppCompatActivity implements ArResultAdapter.ArListResultListener {
+public class PhotoResultActivity extends AppCompatActivity implements ArResultAdapter.ArListResultListener {
 
     List<FirebaseVisionImageLabel> testi = new ArrayList<>();
 
@@ -31,7 +33,11 @@ public class ArResultActivity extends AppCompatActivity implements ArResultAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ar_result);
+        setContentView(R.layout.activity_photo_result);
+
+        TextView textHeader = findViewById(R.id.textHeader);
+        LinearLayout btnCheck = findViewById(R.id.btnCheck);
+        textHeader.setText("Photo Result");
 
         configureAndRunImageLabeler();
     }
@@ -57,16 +63,16 @@ public class ArResultActivity extends AppCompatActivity implements ArResultAdapt
                     public void onSuccess(List<FirebaseVisionImageLabel> labels) {
                         // Task completed successfully
                         testi = labels;
-                        ArResultAdapter arResultAdapter = new ArResultAdapter(testi, ArResultActivity.this);
+                        ArResultAdapter arResultAdapter = new ArResultAdapter(testi, PhotoResultActivity.this);
                         rvArResult.setAdapter(arResultAdapter);
-                        rvArResult.setLayoutManager(new LinearLayoutManager(ArResultActivity.this));
+                        rvArResult.setLayoutManager(new LinearLayoutManager(PhotoResultActivity.this));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Task failed with an exception
-                        Toast.makeText(ArResultActivity.this, "System is busy!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PhotoResultActivity.this, "System is busy!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -94,6 +100,7 @@ public class ArResultActivity extends AppCompatActivity implements ArResultAdapt
         Log.d("test", "arListResultClick: " + position);
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchValue", testi.get(position).getText());
+        intent.putExtra("searchValueCategory", "");
         startActivity(intent);
     }
 }
