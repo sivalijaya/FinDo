@@ -2,7 +2,6 @@ package com.example.findo.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +63,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         r.getDisplayMetrics()
                 );
                 int width = (int) (cv.getMeasuredWidth() - px);
-                ItemListAdapter adapter = new ItemListAdapter(productCategory.getProduct(), (int) (width / 2.4), CategoryAdapter.this);
+                ItemListAdapter adapter = new ItemListAdapter(productCategory.getProduct(), (int) (width / 2.4), CategoryAdapter.this, position);
 
                 rv_itemCategory.setAdapter(adapter);
                 rv_itemCategory.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -79,9 +78,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void itemListAdapterClick(int position) {
-        //todo intent to product detail
-        Log.d("test", "arListResultClick: " + position);
-        Toast.makeText(context.getApplicationContext(), mProductCategories.get(clickPosition).getProduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void itemListAdapterClickFromParent(int parentPosition, int position) {
+        Toast.makeText(context.getApplicationContext(), mProductCategories.get(parentPosition).getProduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -90,6 +91,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public RecyclerView rv_itemCategory;
         public CardView rl_homeActivityContainer;
         public CategoryAdapterListener categoryAdapterListener;
+        public int position;
 
         public ViewHolder(View itemView, CategoryAdapterListener categoryAdapterListener) {
             super(itemView);
@@ -105,7 +107,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            clickPosition = getAdapterPosition();
             categoryAdapterListener.categoryAdapterClick(getAdapterPosition());
         }
     }

@@ -83,6 +83,10 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
         Toast.makeText(SearchResultActivity.this, products.get(position).getId() + "System is busy!", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void itemListAdapterClickFromParent(int parentPosition, int position) {
+    }
+
     private void fetchDataFromFirebase(String searchValue) {
         products.clear();
         mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");

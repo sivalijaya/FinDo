@@ -21,6 +21,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     private List<Product> mProducts;
     private int width;
     private ItemListAdapterListener mItemListAdapterListener;
+    private int parentPosition = -1;
 
     @Override
     public ItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,7 +33,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         productView.getLayoutParams().width = width;
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(productView, mItemListAdapterListener);
+        ViewHolder viewHolder = new ViewHolder(productView, mItemListAdapterListener, this.parentPosition);
         return viewHolder;
     }
 
@@ -63,6 +64,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         public ImageView productImage;
         public TextView productTitle, productPrice, total_sold;
         public ItemListAdapterListener itemListAdapterListener;
+        public int parentPosition = -1;
 
         public ViewHolder(View itemView, ItemListAdapterListener itemListAdapterListener) {
             super(itemView);
@@ -76,9 +78,25 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             itemView.setOnClickListener(this);
         }
 
+        public ViewHolder(View itemView, ItemListAdapterListener itemListAdapterListener, int parentPosition) {
+            super(itemView);
+
+            productImage = itemView.findViewById(R.id.product_image);
+            productTitle = itemView.findViewById(R.id.product_title);
+            productPrice = itemView.findViewById(R.id.price);
+            total_sold = itemView.findViewById(R.id.total_sold);
+            this.itemListAdapterListener = itemListAdapterListener;
+            this.parentPosition = parentPosition;
+
+            itemView.setOnClickListener(this);
+        }
+
         @Override
         public void onClick(View view) {
-            itemListAdapterListener.itemListAdapterClick(getAdapterPosition());
+            if (this.parentPosition == -1)
+                itemListAdapterListener.itemListAdapterClick(getAdapterPosition());
+            else
+                itemListAdapterListener.itemListAdapterClickFromParent(this.parentPosition, getAdapterPosition());
         }
     }
 
@@ -88,7 +106,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         this.mItemListAdapterListener = mItemListAdapterListener;
     }
 
+    public ItemListAdapter(List<Product> products, int width, ItemListAdapterListener mItemListAdapterListener, int parentPosition) {
+        mProducts = products;
+        this.width = width;
+        this.mItemListAdapterListener = mItemListAdapterListener;
+        this.parentPosition = parentPosition;
+    }
+
     public interface ItemListAdapterListener {
         void itemListAdapterClick(int position);
+
+        void itemListAdapterClickFromParent(int parentPosition, int position);
     }
 }
