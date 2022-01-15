@@ -85,8 +85,8 @@
 
         <TextView
             android:id="@+id/btn_popular"
-            android:layout_width="80dp"
-            android:layout_height="32dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/button_rectangle_white"
             android:gravity="center"
@@ -97,8 +97,8 @@
 
         <LinearLayout
             android:id="@+id/btn_pricedown"
-            android:layout_width="80dp"
-            android:layout_height="32dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/button_rectangle_white"
             android:gravity="center"
@@ -119,14 +119,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:src="@drawable/ic_baseline_arrow_downward_24" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/btn_priceup"
-            android:layout_width="80dp"
-            android:layout_height="32dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/button_rectangle_white"
             android:gravity="center"
@@ -147,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:src="@drawable/ic_baseline_arrow_upward_24" />
         </LinearLayout>
     </GridLayout>
