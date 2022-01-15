@@ -33,43 +33,41 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
             android:id="@+id/btn_male"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/button_rectangle_white"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="Male"
+            android:textColor="@color/yellow_main_2"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Male"
-                android:textColor="@color/yellow_main_2"
-                android:textSize="12dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
             android:id="@+id/btn_female"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/button_rectangle_white"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="Female"
+            android:textColor="@color/yellow_main_2"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Female"
-                android:textColor="@color/yellow_main_2"
-                android:textSize="12dp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="reset"
+            android:textColor="@color/yellow_main_2"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
     </LinearLayout>
 
 

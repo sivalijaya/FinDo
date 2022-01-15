@@ -129,25 +129,25 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     }
 
     private void selectedButtonWithImageView(LinearLayout btn_linearlayout, TextView btn_text, ImageView btn_imageview) {
-        btn_linearlayout.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle));
-        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
-        btn_imageview.setColorFilter(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
+        btn_linearlayout.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle));
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.white));
+        btn_imageview.setColorFilter(ContextCompat.getColor(this, R.color.white));
     }
 
     private void unselectedButtonWithImageView(LinearLayout btn_linearlayout, TextView btn_text, ImageView btn_imageview) {
-        btn_linearlayout.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle_white));
-        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
-        btn_imageview.setColorFilter(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
+        btn_linearlayout.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle_white));
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.yellow_main_2));
+        btn_imageview.setColorFilter(ContextCompat.getColor(this, R.color.yellow_main_2));
     }
 
     private void selectedButton(TextView btn_text) {
-        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
-        btn_text.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle));
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.white));
+        btn_text.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle));
     }
 
     private void unselectedButton(TextView btn_text) {
-        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
-        btn_text.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle_white));
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.yellow_main_2));
+        btn_text.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle_white));
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     private static final int CAMERA_REQUEST_CODE = 2;
 
     private ArrayList<ProductCategory> mproductcategories = new ArrayList<>();
+    private ArrayList<ProductCategory> temp = new ArrayList<>();
     private DatabaseReference mDatabase;
     CategoryAdapter adapter;
 
@@ -64,6 +66,66 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         fetchDataFromFirebase();
+
+        TextView btn_male = findViewById(R.id.btn_male);
+        TextView btn_reset = findViewById(R.id.btn_reset);
+        TextView btn_female = findViewById(R.id.btn_female);
+
+        btn_male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mproductcategories.clear();
+                for (ProductCategory productCategory : temp) {
+                    if (productCategory.getName().contains("Male")) {
+                        mproductcategories.add(productCategory);
+                    }
+                }
+                selectedButton(btn_male);
+                unselectedButton(btn_female);
+                btn_reset.setVisibility(View.VISIBLE);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btn_female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mproductcategories.clear();
+                for (ProductCategory productCategory : temp) {
+                    if (productCategory.getName().toLowerCase().contains("female")) {
+                        mproductcategories.add(productCategory);
+                    }
+                }
+                selectedButton(btn_female);
+                unselectedButton(btn_male);
+                btn_reset.setVisibility(View.VISIBLE);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mproductcategories.clear();
+                for (ProductCategory productCategory : temp) {
+                    mproductcategories.add(productCategory);
+                }
+                unselectedButton(btn_male);
+                unselectedButton(btn_female);
+                btn_reset.setVisibility(View.GONE);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void selectedButton(TextView btn_text) {
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.white));
+        btn_text.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle));
+    }
+
+    private void unselectedButton(TextView btn_text) {
+        btn_text.setTextColor(ContextCompat.getColor(this, R.color.yellow_main_2));
+        btn_text.setBackground(ContextCompat.getDrawable(this, R.drawable.button_rectangle_white));
     }
 
     private void fetchDataFromFirebase() {
@@ -75,6 +137,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
                     ProductCategory productCategory = new ProductCategory(categorySnapshot);
                     mproductcategories.add(productCategory);
                 }
+                temp = new ArrayList<>(mproductcategories);
                 adapter.notifyDataSetChanged();
             }
 
