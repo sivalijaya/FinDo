@@ -3,12 +3,13 @@ package com.example.findo.model;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Product {
     private Integer id;
     private String name;
     private Integer sold;
-    private Long price;
+    private Integer price;
     private Integer stock;
     private String description;
     private ArrayList<String> photo;
@@ -22,7 +23,7 @@ public class Product {
         this.id = Integer.parseInt(productSnapshot.getKey());
         this.name = productSnapshot.child("name").getValue().toString();
         this.sold = Integer.parseInt(productSnapshot.child("sold").getValue().toString());
-        this.price = Long.parseLong(productSnapshot.child("price").getValue().toString());
+        this.price = Integer.parseInt(productSnapshot.child("price").getValue().toString());
         ArrayList<String> productImages = new ArrayList<>();
         for (DataSnapshot productImageSnapshot : productSnapshot.child("images").getChildren()) {
             productImages.add(productImageSnapshot.getValue().toString());
@@ -32,7 +33,7 @@ public class Product {
         this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();
     }
 
-    public Product(Integer id, String name, Integer sold, Long price, ArrayList<String> photo) {
+    public Product(Integer id, String name, Integer sold, Integer price, ArrayList<String> photo) {
         this.id = id;
         this.name = name;
         this.sold = sold;
@@ -40,7 +41,7 @@ public class Product {
         this.photo = photo;
     }
 
-    public Product(Integer id, String name, Integer sold, Long price, Integer stock, String description, ArrayList<String> photo, String gender) {
+    public Product(Integer id, String name, Integer sold, Integer price, Integer stock, String description, ArrayList<String> photo, String gender) {
         this.id = id;
         this.name = name;
         this.sold = sold;
@@ -74,11 +75,11 @@ public class Product {
         this.sold = sold;
     }
 
-    public Long getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -121,4 +122,25 @@ public class Product {
     public void setShippingFrom(String shippingFrom) {
         this.shippingFrom = shippingFrom;
     }
+
+    public static Comparator<Product> COMPARATORPRICEASCENDING = new Comparator<Product>() {
+        // This is where the sorting happens.
+        public int compare(Product o1, Product o2) {
+            return o1.getPrice() - o2.getPrice();
+        }
+    };
+
+    public static Comparator<Product> COMPARATORPRICEDESCENDING = new Comparator<Product>() {
+        // This is where the sorting happens.
+        public int compare(Product o1, Product o2) {
+            return o2.getPrice() - o1.getPrice();
+        }
+    };
+
+    public static Comparator<Product> COMPARATORSOLDDESCENDING = new Comparator<Product>() {
+        // This is where the sorting happens.
+        public int compare(Product o1, Product o2) {
+            return o2.getSold() - o1.getSold();
+        }
+    };
 }

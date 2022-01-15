@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,11 +28,11 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SearchResultActivity extends AppCompatActivity implements ItemListAdapter.ItemListAdapterListener {
 
     private ArrayList<Product> products = new ArrayList<>();
-    private ArrayList<Product> temp = new ArrayList<>();
     private DatabaseReference mDatabase;
     private int width = 0;
     private ItemListAdapter adapter;
@@ -45,6 +48,10 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
         TextView btn_popular = findViewById(R.id.btn_popular);
         LinearLayout btn_pricedown = findViewById(R.id.btn_pricedown);
         LinearLayout btn_priceup = findViewById(R.id.btn_priceup);
+        ImageView btn_pricedown_imageview = findViewById(R.id.btn_pricedown_imageview);
+        ImageView btn_priceup_imageview = findViewById(R.id.btn_priceup_imageview);
+        TextView btn_pricedown_text = findViewById(R.id.btn_pricedown_text);
+        TextView btn_priceup_text = findViewById(R.id.btn_priceup_text);
 
 
         tv_title_result.setText(bundle.getString("searchValue"));
@@ -74,6 +81,73 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                 }
             }
         });
+
+        btn_popular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //resetButtonLayout
+                unselectedButtonWithImageView(btn_pricedown, btn_pricedown_text, btn_pricedown_imageview);
+                unselectedButtonWithImageView(btn_priceup, btn_priceup_text, btn_priceup_imageview);
+
+                //selectedButtonLayout
+                selectedButton(btn_popular);
+
+                Collections.sort(products, Product.COMPARATORSOLDDESCENDING);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btn_pricedown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //resetButtonLayout
+                unselectedButton(btn_popular);
+                unselectedButtonWithImageView(btn_priceup, btn_priceup_text, btn_priceup_imageview);
+
+                //selectedButtonLayout
+                selectedButtonWithImageView(btn_pricedown, btn_pricedown_text, btn_pricedown_imageview);
+
+                Collections.sort(products, Product.COMPARATORPRICEASCENDING);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btn_priceup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //resetButtonLayout
+                unselectedButton(btn_popular);
+                unselectedButtonWithImageView(btn_pricedown, btn_pricedown_text, btn_pricedown_imageview);
+
+                //selectedButtonLayout
+                selectedButtonWithImageView(btn_priceup, btn_priceup_text, btn_priceup_imageview);
+
+                Collections.sort(products, Product.COMPARATORPRICEDESCENDING);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void selectedButtonWithImageView(LinearLayout btn_linearlayout, TextView btn_text, ImageView btn_imageview) {
+        btn_linearlayout.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle));
+        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
+        btn_imageview.setColorFilter(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
+    }
+
+    private void unselectedButtonWithImageView(LinearLayout btn_linearlayout, TextView btn_text, ImageView btn_imageview) {
+        btn_linearlayout.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle_white));
+        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
+        btn_imageview.setColorFilter(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
+    }
+
+    private void selectedButton(TextView btn_text) {
+        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.white));
+        btn_text.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle));
+    }
+
+    private void unselectedButton(TextView btn_text) {
+        btn_text.setTextColor(ContextCompat.getColor(SearchResultActivity.this, R.color.yellow_main_2));
+        btn_text.setBackground(ContextCompat.getDrawable(SearchResultActivity.this, R.drawable.button_rectangle_white));
     }
 
     @Override
@@ -99,7 +173,6 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                         products.add(product);
                     }
                 }
-                temp = new ArrayList<>(products);
                 adapter.notifyDataSetChanged();
             }
 
@@ -124,7 +197,6 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                         products.add(product);
                     }
                 }
-                temp = new ArrayList<>(products);
                 adapter.notifyDataSetChanged();
             }
 
