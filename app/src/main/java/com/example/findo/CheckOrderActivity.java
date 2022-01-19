@@ -19,8 +19,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.findo.model.PaymentMethod;
-import com.example.findo.model.Product;
 import com.example.findo.model.Transaction;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
