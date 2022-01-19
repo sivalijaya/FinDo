@@ -36,8 +36,8 @@ public class CheckOrderActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private Transaction transaction;
-    private TextView tv_recipientname, tv_recipientemail, tv_recipientphone, tv_recipientaddress, tv_time_issued, tv_shippingmethodprice;
-    private TextView tv_product_name, tv_product_price, tv_product_quantity, total_price;
+    private TextView tv_recipientname, tv_recipientemail, tv_recipientphone, tv_recipientaddress, tv_time_issued, tv_shippingmethodprice, tv_pricegiftwrapping;
+    private TextView tv_product_name, tv_product_price, tv_product_quantity, total_price, tv_product_pricedetail;
     private TextView orderCreated, paymentAccepted, orderOnTheWay, delivered;
     private ImageView iv_payment_method, iv_product_image, iv_shippingmethod;
     private CheckBox giftWrapping;
@@ -60,6 +60,8 @@ public class CheckOrderActivity extends AppCompatActivity {
         tv_time_issued = findViewById(R.id.tv_time_issued);
         tv_shippingmethodprice = findViewById(R.id.tv_shippingmethodprice);
         iv_shippingmethod = findViewById(R.id.iv_shippingmethod);
+        tv_pricegiftwrapping = findViewById(R.id.tv_pricegiftwrapping);
+        tv_product_pricedetail = findViewById(R.id.tv_product_pricedetail);
 
         tv_product_name = findViewById(R.id.tv_product_name);
         tv_product_price = findViewById(R.id.tv_product_price);
@@ -131,7 +133,7 @@ public class CheckOrderActivity extends AppCompatActivity {
                         tv_recipientemail.setText(transaction.getRecipient().getEmail());
                         tv_recipientaddress.setText(transaction.getRecipient().getAddress());
                         tv_recipientphone.setText(transaction.getRecipient().getPhone_number());
-                        tv_product_quantity.setText(transaction.getQuantity().toString());
+                        tv_product_quantity.setText("x" + transaction.getQuantity().toString());
                         tv_shippingmethodprice.setText(decimalFormat.format(transaction.getShipping_method().getPrice()));
                         Picasso.get().load(transaction.getShipping_method().getImage()).into(iv_shippingmethod);
 
@@ -144,19 +146,22 @@ public class CheckOrderActivity extends AppCompatActivity {
 
                         tv_product_name.setText(transaction.getProduct().getName());
                         tv_product_price.setText(decimalFormat.format(transaction.getProduct().getPrice()));
+                        tv_product_pricedetail.setText(decimalFormat.format(transaction.getProduct().getPrice()));
                         Picasso.get().load(transaction.getProduct().getPhoto().get(0)).into(iv_product_image);
                         int totalPrice = (transaction.getProduct().getPrice() * transaction.getQuantity()) + transaction.getShipping_method().getPrice();
-                        total_price.setText(decimalFormat.format(totalPrice));
-
 
                         Picasso.get().load(transaction.getPayment_method().getImage()).into(iv_payment_method);
 
                         //checkbox gift_wrapping
                         if (transaction.getGift_wrapping() == true) {
                             giftWrapping.setChecked(true);
+                            tv_pricegiftwrapping.setText(decimalFormat.format(5000));
+                            totalPrice += 5000;
                         } else {
+                            tv_pricegiftwrapping.setText("-");
                             giftWrapping.setChecked(false);
                         }
+                        total_price.setText(decimalFormat.format(totalPrice));
 
                         //set status
                         if (transaction.getStatus() == 0) {
