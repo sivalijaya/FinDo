@@ -80,6 +80,8 @@ public class CheckOrderActivity extends AppCompatActivity {
         shipping_info = findViewById(R.id.shipping_info);
         ll_virtualaccount = findViewById(R.id.ll_virtualaccount);
 
+        etSearch.requestFocus();
+
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,6 +115,7 @@ public class CheckOrderActivity extends AppCompatActivity {
                 } else {
                     etSearch.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     fetchDataFromFirebase(etSearch.getText().toString());
+                    etSearch.clearFocus();
                 }
             }
         });
