@@ -47,10 +47,9 @@ public class ProductCategory {
         this.product = productList;
     }
 
-    public ProductCategory(Integer id, String name, ArrayList<Product> product) {
+    public ProductCategory(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.product = product;
     }
 
     public Integer getId() {

@@ -33,10 +33,9 @@ public class Product {
         this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();
     }
 
-    public Product(Integer id, String name, Integer sold, Integer price, ArrayList<String> photo) {
+    public Product(Integer id, String name, Integer price, ArrayList<String> photo) {
         this.id = id;
         this.name = name;
-        this.sold = sold;
         this.price = price;
         this.photo = photo;
     }

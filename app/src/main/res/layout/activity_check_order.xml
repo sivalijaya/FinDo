@@ -102,7 +102,7 @@
                     android:layout_marginTop="8dp">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="132dp"
                         android:layout_height="wrap_content"
                         android:text="Name"
                         android:textColor="@color/black"
@@ -122,7 +122,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="132dp"
                         android:layout_height="wrap_content"
                         android:text="Email"
                         android:textColor="@color/black"
@@ -142,7 +142,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="132dp"
                         android:layout_height="wrap_content"
                         android:text="Phone Number"
                         android:textColor="@color/black"
@@ -162,7 +162,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="132dp"
                         android:layout_height="wrap_content"
                         android:text="Address"
                         android:textColor="@color/black"
@@ -179,7 +179,37 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="132dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Shipping Method"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_shippingmethod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/findo_logo_small" />
+
+                    <TextView
+                        android:id="@+id/tv_shippingmethodprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:gravity="center_vertical|end"
+                        android:text=""
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/button_rectangle_yellowmain"
                     android:orientation="vertical">
 
@@ -426,6 +456,7 @@
                             android:id="@+id/iv_payment_method"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
+                            android:layout_gravity="bottom"
                             android:adjustViewBounds="true"
                             android:src="@drawable/findo_logo_small" />
 
@@ -433,7 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="4dp"
-                            android:gravity="center_vertical"
+                            android:gravity="bottom"
                             android:text="Grand Total: "
                             android:textColor="@color/black"
                             android:textSize="16dp" />
@@ -441,7 +472,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical"
+                            android:gravity="bottom"
                             android:text="Rp "
                             android:textColor="@color/black"
                             android:textSize="16dp" />
@@ -450,7 +481,7 @@
                             android:id="@+id/total_price"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:gravity="center"
+                            android:gravity="bottom"
                             android:text="100.000"
                             android:textColor="@color/black"
                             android:textSize="18dp"

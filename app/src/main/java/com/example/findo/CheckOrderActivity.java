@@ -38,10 +38,10 @@ public class CheckOrderActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private Transaction transaction;
-    private TextView tv_recipientname, tv_recipientemail, tv_recipientphone, tv_recipientaddress, tv_time_issued;
+    private TextView tv_recipientname, tv_recipientemail, tv_recipientphone, tv_recipientaddress, tv_time_issued, tv_shippingmethodprice;
     private TextView tv_product_name, tv_product_price, tv_product_quantity, total_price;
     private TextView orderCreated, paymentAccepted, orderOnTheWay, delivered;
-    private ImageView iv_payment_method, iv_product_image;
+    private ImageView iv_payment_method, iv_product_image, iv_shippingmethod;
     private CheckBox giftWrapping;
     private LinearLayout shipping_info;
 
@@ -60,6 +60,8 @@ public class CheckOrderActivity extends AppCompatActivity {
         tv_recipientphone = findViewById(R.id.tv_recipientphone);
         tv_recipientaddress = findViewById(R.id.tv_recipientaddress);
         tv_time_issued = findViewById(R.id.tv_time_issued);
+        tv_shippingmethodprice = findViewById(R.id.tv_shippingmethodprice);
+        iv_shippingmethod = findViewById(R.id.iv_shippingmethod);
 
         tv_product_name = findViewById(R.id.tv_product_name);
         tv_product_price = findViewById(R.id.tv_product_price);
@@ -126,62 +128,30 @@ public class CheckOrderActivity extends AppCompatActivity {
                 for (DataSnapshot transactionSnapshot : snapshot.getChildren()) {
                     if (transactionSnapshot.child("order_id").getValue().toString().equals(orderId)) {
                         transaction = new Transaction(transactionSnapshot);
+                        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
                         tv_recipientname.setText(transaction.getRecipient().getName());
                         tv_recipientemail.setText(transaction.getRecipient().getEmail());
                         tv_recipientaddress.setText(transaction.getRecipient().getAddress());
                         tv_recipientphone.setText(transaction.getRecipient().getPhone_number());
                         tv_product_quantity.setText(transaction.getQuantity().toString());
+                        tv_shippingmethodprice.setText(decimalFormat.format(transaction.getShipping_method().getPrice()));
+                        Picasso.get().load(transaction.getShipping_method().getImage()).into(iv_shippingmethod);
+
 
                         LocalDateTime myDateObj = LocalDateTime.parse(transaction.getTime_issued());
                         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
                         String formattedDate = myDateObj.format(myFormatObj);
-
                         tv_time_issued.setText(formattedDate);
-                        //get product
-                        DatabaseReference productDatabaseRef = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
-                        ValueEventListener productListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                                    if (Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == transaction.getProduct_id()) {
-                                        Product product = new Product(productSnapshot);
-                                        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-                                        tv_product_name.setText(product.getName());
-                                        tv_product_price.setText(decimalFormat.format(product.getPrice()));
-                                        Picasso.get().load(product.getPhoto().get(0)).into(iv_product_image);
 
-                                        int totalPrice = product.getPrice() * transaction.getQuantity();
-                                        total_price.setText(decimalFormat.format(totalPrice));
-                                    }
-                                }
-                            }
 
-                            @Override
-                            public void onCancelled(@androidx.annotation.NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-                                Log.d("fdatabase", "onDataChange: " + error.getMessage());
-                            }
-                        };
-                        productDatabaseRef.addValueEventListener(productListener);
+                        tv_product_name.setText(transaction.getProduct().getName());
+                        tv_product_price.setText(decimalFormat.format(transaction.getProduct().getPrice()));
+                        Picasso.get().load(transaction.getProduct().getPhoto().get(0)).into(iv_product_image);
+                        int totalPrice = (transaction.getProduct().getPrice() * transaction.getQuantity()) + transaction.getShipping_method().getPrice();
+                        total_price.setText(decimalFormat.format(totalPrice));
 
-                        //get payment method image
-                        DatabaseReference paymentDatabaseRef = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("payment_method");
-                        ValueEventListener paymentListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                for (DataSnapshot paymentMethodSnapshot : snapshot.getChildren()) {
-                                    if (Integer.parseInt(paymentMethodSnapshot.getKey()) == transaction.getPayment_method_id()) {
-                                        PaymentMethod paymentMethod = new PaymentMethod(paymentMethodSnapshot);
-                                        Picasso.get().load(paymentMethod.getImage()).into(iv_payment_method);
-                                    }
-                                }
-                            }
 
-                            @Override
-                            public void onCancelled(@androidx.annotation.NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-                                Log.d("fdatabase", "onDataChange: " + error.getMessage());
-                            }
-                        };
-                        paymentDatabaseRef.addValueEventListener(paymentListener);
+                        Picasso.get().load(transaction.getPayment_method().getImage()).into(iv_payment_method);
 
                         //checkbox gift_wrapping
                         if (transaction.getGift_wrapping() == true) {

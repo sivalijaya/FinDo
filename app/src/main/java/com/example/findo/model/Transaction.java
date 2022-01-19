@@ -2,14 +2,16 @@ package com.example.findo.model;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.util.ArrayList;
+
 public class Transaction {
     private Boolean gift_wrapping;
     private String order_id;
-    private Integer payment_method_id;
-    private Integer product_category_id;
-    private Integer product_id;
+    private PaymentMethod payment_method;
+    private ProductCategory product_category;
+    private Product product;
     private Recipient recipient;
-    private Integer shipping_method_id;
+    private ShippingMethod shipping_method;
     private Integer status;
     private String time_issued;
     private String virtual_account;
@@ -18,15 +20,38 @@ public class Transaction {
     public Transaction(DataSnapshot transactionSnapshot) {
         this.gift_wrapping = Boolean.parseBoolean(transactionSnapshot.child("gift_wrapping").getValue().toString());
         this.order_id = transactionSnapshot.child("gift_wrapping").getValue().toString();
-        this.payment_method_id = Integer.parseInt(transactionSnapshot.child("payment_method_id").getValue().toString());
-        this.product_category_id = Integer.parseInt(transactionSnapshot.child("product_category_id").getValue().toString());
-        this.product_id = Integer.parseInt(transactionSnapshot.child("product_id").getValue().toString());
+
+        ArrayList<String> product_photo = new ArrayList<>();
+        Integer product_id = Integer.parseInt(transactionSnapshot.child("product").child("id").getValue().toString());
+        product_photo.add(transactionSnapshot.child("product").child("image").getValue().toString());
+        String product_name = transactionSnapshot.child("product").child("name").getValue().toString();
+        Integer product_price = Integer.parseInt(transactionSnapshot.child("product").child("price").getValue().toString());
+        this.product = new Product(product_id, product_name, product_price, product_photo);
+
+        Integer paymentMethod_id = Integer.parseInt(transactionSnapshot.child("payment_method").child("id").getValue().toString());
+        String paymentMethod_name = transactionSnapshot.child("payment_method").child("name").getValue().toString();
+        String paymentMethod_image = transactionSnapshot.child("payment_method").child("image").getValue().toString();
+        this.payment_method = new PaymentMethod(paymentMethod_id, paymentMethod_name, paymentMethod_image);
+
+
+        Integer productCategory_id = Integer.parseInt(transactionSnapshot.child("product_category").child("id").getValue().toString());
+        String productCategory_name = transactionSnapshot.child("product_category").child("name").getValue().toString();
+        this.product_category = new ProductCategory(productCategory_id, productCategory_name);
+
         String recipientName = transactionSnapshot.child("recipient").child("name").getValue().toString();
         String recipientEmail = transactionSnapshot.child("recipient").child("email").getValue().toString();
         String recipientPhoneNumber = transactionSnapshot.child("recipient").child("phone_number").getValue().toString();
         String recipientAddress = transactionSnapshot.child("recipient").child("address").getValue().toString();
         this.recipient = new Recipient(recipientAddress, recipientEmail, recipientName, recipientPhoneNumber);
-        this.shipping_method_id = Integer.parseInt(transactionSnapshot.child("shipping_method_id").getValue().toString());
+
+
+        Integer shippingMethod_id = Integer.parseInt(transactionSnapshot.child("shipping_method").child("id").getValue().toString());
+        String shippingMethod_name = transactionSnapshot.child("shipping_method").child("name").getValue().toString();
+        String shippingMethod_image = transactionSnapshot.child("shipping_method").child("image").getValue().toString();
+        Integer shippingMethod_price = Integer.parseInt(transactionSnapshot.child("shipping_method").child("price").getValue().toString());
+        this.shipping_method = new ShippingMethod(shippingMethod_id, shippingMethod_name, shippingMethod_image, shippingMethod_price);
+
+
         this.status = Integer.parseInt(transactionSnapshot.child("status").getValue().toString());
         this.time_issued = transactionSnapshot.child("time_issued").getValue().toString();
         this.virtual_account = transactionSnapshot.child("virtual_account").getValue().toString();
@@ -49,28 +74,28 @@ public class Transaction {
         this.order_id = order_id;
     }
 
-    public Integer getPayment_method_id() {
-        return payment_method_id;
+    public PaymentMethod getPayment_method() {
+        return payment_method;
     }
 
-    public void setPayment_method_id(Integer payment_method_id) {
-        this.payment_method_id = payment_method_id;
+    public void setPayment_method(PaymentMethod payment_method) {
+        this.payment_method = payment_method;
     }
 
-    public Integer getProduct_category_id() {
-        return product_category_id;
+    public ProductCategory getProduct_category() {
+        return product_category;
     }
 
-    public void setProduct_category_id(Integer product_category_id) {
-        this.product_category_id = product_category_id;
+    public void setProduct_category(ProductCategory product_category) {
+        this.product_category = product_category;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Recipient getRecipient() {
@@ -81,12 +106,12 @@ public class Transaction {
         this.recipient = recipient;
     }
 
-    public Integer getShipping_method_id() {
-        return shipping_method_id;
+    public ShippingMethod getShipping_method() {
+        return shipping_method;
     }
 
-    public void setShipping_method_id(Integer shipping_method_id) {
-        this.shipping_method_id = shipping_method_id;
+    public void setShipping_method(ShippingMethod shipping_method) {
+        this.shipping_method = shipping_method;
     }
 
     public Integer getStatus() {
