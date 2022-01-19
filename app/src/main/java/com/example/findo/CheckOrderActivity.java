@@ -37,11 +37,11 @@ public class CheckOrderActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Transaction transaction;
     private TextView tv_recipientname, tv_recipientemail, tv_recipientphone, tv_recipientaddress, tv_time_issued, tv_shippingmethodprice, tv_pricegiftwrapping;
-    private TextView tv_product_name, tv_product_price, tv_product_quantity, total_price, tv_product_pricedetail;
+    private TextView tv_product_name, tv_product_price, tv_product_quantity, total_price, tv_product_pricedetail, tv_virtualaccount;
     private TextView orderCreated, paymentAccepted, orderOnTheWay, delivered;
     private ImageView iv_payment_method, iv_product_image, iv_shippingmethod;
     private CheckBox giftWrapping;
-    private LinearLayout shipping_info;
+    private LinearLayout shipping_info, ll_virtualaccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class CheckOrderActivity extends AppCompatActivity {
         iv_shippingmethod = findViewById(R.id.iv_shippingmethod);
         tv_pricegiftwrapping = findViewById(R.id.tv_pricegiftwrapping);
         tv_product_pricedetail = findViewById(R.id.tv_product_pricedetail);
+        tv_virtualaccount = findViewById(R.id.tv_virtualaccount);
 
         tv_product_name = findViewById(R.id.tv_product_name);
         tv_product_price = findViewById(R.id.tv_product_price);
@@ -77,6 +78,7 @@ public class CheckOrderActivity extends AppCompatActivity {
         delivered = findViewById(R.id.delivered);
 
         shipping_info = findViewById(R.id.shipping_info);
+        ll_virtualaccount = findViewById(R.id.ll_virtualaccount);
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -137,7 +139,6 @@ public class CheckOrderActivity extends AppCompatActivity {
                         tv_shippingmethodprice.setText(decimalFormat.format(transaction.getShipping_method().getPrice()));
                         Picasso.get().load(transaction.getShipping_method().getImage()).into(iv_shippingmethod);
 
-
                         LocalDateTime myDateObj = LocalDateTime.parse(transaction.getTime_issued());
                         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
                         String formattedDate = myDateObj.format(myFormatObj);
@@ -166,18 +167,23 @@ public class CheckOrderActivity extends AppCompatActivity {
                         //set status
                         if (transaction.getStatus() == 0) {
                             orderCreated.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
+                            tv_virtualaccount.setText(transaction.getVirtual_account());
+                            ll_virtualaccount.setVisibility(View.VISIBLE);
                         } else if (transaction.getStatus() == 1) {
                             orderCreated.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             paymentAccepted.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
+                            ll_virtualaccount.setVisibility(View.GONE);
                         } else if (transaction.getStatus() == 2) {
                             orderCreated.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             paymentAccepted.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             orderOnTheWay.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
+                            ll_virtualaccount.setVisibility(View.GONE);
                         } else if (transaction.getStatus() == 3) {
                             orderCreated.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             paymentAccepted.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             orderOnTheWay.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
                             delivered.setTextColor(ContextCompat.getColor(CheckOrderActivity.this, R.color.yellow_main_2));
+                            ll_virtualaccount.setVisibility(View.GONE);
                         }
 
                         //flag for check
