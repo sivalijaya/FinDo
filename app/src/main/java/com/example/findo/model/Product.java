@@ -28,6 +28,8 @@ public class Product {
         for (DataSnapshot productImageSnapshot : productSnapshot.child("images").getChildren()) {
             productImages.add(productImageSnapshot.getValue().toString());
         }
+        this.stock = Integer.parseInt(productSnapshot.child("stock").getValue().toString());
+        this.description = productSnapshot.child("description").getValue().toString();
         this.photo = productImages;
         this.brand = productSnapshot.child("brand").getValue().toString();
         this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();

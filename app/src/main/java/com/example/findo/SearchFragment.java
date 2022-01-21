@@ -29,7 +29,6 @@ public class SearchFragment extends Fragment {
         btn_check_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //todo change intent to check order
                 Intent intent = new Intent(getActivity(), CheckOrderActivity.class);
                 startActivity(intent);
             }
@@ -63,7 +62,6 @@ public class SearchFragment extends Fragment {
                         intent.putExtra("searchValue", et_search.getText().toString());
                         intent.putExtra("searchValueCategory", "");
                         et_search.setText("");
-                        Log.d("intent", "onEditorAction: " + intent.getExtras().toString());
                         startActivity(intent);
                         return true;
                     }

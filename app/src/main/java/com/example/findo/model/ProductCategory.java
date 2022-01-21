@@ -26,21 +26,20 @@ public class ProductCategory {
         this.id = Integer.parseInt(categorySnapshot.getKey());
         this.name = categorySnapshot.child("name").getValue().toString();
         ArrayList<Product> productList = new ArrayList<>();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("product");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
                     if (Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString()) == Integer.parseInt(categorySnapshot.getKey())) {
                         productList.add(new Product(productSnapshot));
-                        Log.d("debug product name", "onDataChange: " + productSnapshot.getKey());
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                Log.d("fdatabase", "onDataChange: " + error.getMessage());
             }
         };
         mDatabase.addValueEventListener(postListener);

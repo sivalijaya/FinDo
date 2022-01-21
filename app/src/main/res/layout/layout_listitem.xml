@@ -26,9 +26,9 @@
             android:id="@+id/product_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:lines="2"
+            android:layout_marginTop="4dp"
             android:text="title"
+            android:textColor="@color/black"
             android:textSize="12dp" />
 
         <LinearLayout
@@ -39,15 +39,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Rp "
-                android:textSize="16dp"
-                android:gravity="center_vertical"/>
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100.000"
+                android:text="999,999"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -70,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
-                android:text="sold "
+                android:text="Sold "
+                android:textColor="@color/black"
                 android:textSize="12dp" />
 
             <TextView
@@ -78,7 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="102"
+                android:text="999"
+                android:textColor="@color/black"
                 android:textSize="12dp" />
         </LinearLayout>
 

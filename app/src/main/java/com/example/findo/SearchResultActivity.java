@@ -1,5 +1,6 @@
 package com.example.findo;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -153,8 +154,10 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     @Override
     public void itemListAdapterClick(int position) {
         //todo intent to product detail
-        Log.d("test", "arListResultClick: " + position);
         Toast.makeText(SearchResultActivity.this, products.get(position).getId() + "System is busy!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra("productId", products.get(position).getId().toString());
+        this.startActivity(intent);
     }
 
     @Override
@@ -163,7 +166,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
     private void fetchDataFromFirebase(String searchValue) {
         products.clear();
-        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("product");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -178,7 +181,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                Log.d("fdatabase", "onDataChange: " + error.getMessage());
             }
         };
         mDatabase.addValueEventListener(postListener);
@@ -187,7 +190,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     private void fetchDataFromFirebaseByCategory(String productCategoryId) {
         // TODO: 04-Jan-22 need change logic for search
         products.clear();
-        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product");
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("product");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -202,7 +205,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                Log.d("fdatabase", "onDataChange: " + error.getMessage());
             }
         };
         mDatabase.addValueEventListener(postListener);

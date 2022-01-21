@@ -1,6 +1,7 @@
 package com.example.findo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findo.ProductDetailActivity;
 import com.example.findo.R;
 import com.example.findo.model.ProductCategory;
 
@@ -83,6 +85,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void itemListAdapterClickFromParent(int parentPosition, int position) {
         Toast.makeText(context.getApplicationContext(), mProductCategories.get(parentPosition).getProduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, ProductDetailActivity.class);
+        intent.putExtra("productId", mProductCategories.get(parentPosition).getProduct().get(position).getId().toString());
+        context.startActivity(intent);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -91,7 +96,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public RecyclerView rv_itemCategory;
         public CardView rl_homeActivityContainer;
         public CategoryAdapterListener categoryAdapterListener;
-        public int position;
 
         public ViewHolder(View itemView, CategoryAdapterListener categoryAdapterListener) {
             super(itemView);

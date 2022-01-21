@@ -123,7 +123,7 @@ public class CheckOrderActivity extends AppCompatActivity {
     }
 
     private void fetchDataFromFirebase(String orderId) {
-        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("transaction");
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("transaction");
         ValueEventListener postListener = new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override

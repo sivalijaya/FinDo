@@ -97,7 +97,6 @@ public class PhotoResultActivity extends AppCompatActivity implements ArResultAd
 
     @Override
     public void arListResultClick(int position) {
-        Log.d("test", "arListResultClick: " + position);
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchValue", testi.get(position).getText());
         intent.putExtra("searchValueCategory", "");

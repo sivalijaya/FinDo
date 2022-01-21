@@ -129,7 +129,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     }
 
     private void fetchDataFromFirebase() {
-        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("product_category");
+        mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("product_category");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
