@@ -3,7 +3,9 @@ package com.example.findo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.findo.model.Product;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +61,65 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ProductDetailActivity.this, "Buy Now!", Toast.LENGTH_SHORT).show();
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ProductDetailActivity.this, R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(
+                        R.layout.layout_bottomsheet,
+                        findViewById(R.id.bottomSheetContainer)
+                );
+                TextView productPrice = bottomSheetView.findViewById(R.id.product_price);
+                TextView productStock = bottomSheetView.findViewById(R.id.product_stock);
+                ImageView productImage = bottomSheetView.findViewById(R.id.product_image);
+                TextView btn_plus = bottomSheetView.findViewById(R.id.btn_plus);
+                TextView btn_minus = bottomSheetView.findViewById(R.id.btn_minus);
+                TextView btn_continue = bottomSheetView.findViewById(R.id.btn_continue);
+                EditText ed_quantity = bottomSheetView.findViewById(R.id.ed_quantity);
+                ImageView btn_close = bottomSheetView.findViewById(R.id.btn_close);
+
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                productPrice.setText(decimalFormat.format(product.getPrice()));
+                productStock.setText(product.getStock().toString());
+                Picasso.get().load(product.getPhoto().get(0)).into(productImage);
+
+                btn_plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (Integer.parseInt(ed_quantity.getText().toString()) >= product.getStock()) {
+
+                        } else {
+                            int count = Integer.parseInt(ed_quantity.getText().toString()) + 1;
+                            ed_quantity.setText(String.valueOf(count));
+                        }
+                    }
+                });
+
+                btn_minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (Integer.parseInt(ed_quantity.getText().toString()) == 0) {
+
+                        } else {
+                            int count = Integer.parseInt(ed_quantity.getText().toString()) - 1;
+                            ed_quantity.setText(String.valueOf(count));
+                        }
+                    }
+                });
+
+                btn_continue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO: 22-Jan-22 intent to cashierPage
+                    }
+                });
+
+                btn_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.cancel();
+                    }
+                });
+
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
             }
         });
 

@@ -27,6 +27,7 @@
                 android:id="@+id/iv_product"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/findo_logo" />
 
             <LinearLayout
