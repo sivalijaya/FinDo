@@ -2,6 +2,8 @@ package com.example.findo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,6 +103,28 @@ public class ProductDetailActivity extends AppCompatActivity {
                             int count = Integer.parseInt(ed_quantity.getText().toString()) - 1;
                             ed_quantity.setText(String.valueOf(count));
                         }
+                    }
+                });
+
+                ed_quantity.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        if (ed_quantity.getText().toString().isEmpty() || (ed_quantity.getText().toString().startsWith("0") && ed_quantity.getText().toString().length() >= 2)) {
+                            ed_quantity.setText("0");
+                        } else if (Integer.parseInt(ed_quantity.getText().toString()) > product.getStock()) {
+                            ed_quantity.setText(String.valueOf(product.getStock()));
+                            ed_quantity.clearFocus();
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
                     }
                 });
 
