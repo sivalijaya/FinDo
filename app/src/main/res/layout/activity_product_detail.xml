@@ -113,7 +113,7 @@
                         android:layout_marginLeft="4dp"
                         android:text="Sold "
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/total_sold"
@@ -122,7 +122,7 @@
                         android:layout_gravity="center"
                         android:text="999"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -168,7 +168,7 @@
                         android:layout_gravity="center"
                         android:text="999"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <View
@@ -199,7 +199,7 @@
                         android:layout_gravity="center"
                         android:text="FinDo"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <View
@@ -230,7 +230,7 @@
                         android:layout_gravity="center"
                         android:text="Jakarta, Indonesia"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <View
@@ -254,9 +254,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:justificationMode="inter_word"
                     android:text="Long Text of Description"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
 
         </LinearLayout>
