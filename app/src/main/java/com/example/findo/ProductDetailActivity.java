@@ -1,5 +1,6 @@
 package com.example.findo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -131,7 +132,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                 btn_continue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO: 22-Jan-22 intent to cashierPage
+                        Intent intent = new Intent(ProductDetailActivity.this, CheckOutActivity.class);
+                        intent.putExtra("productId", product.getId().toString());
+                        intent.putExtra("productQuantity", ed_quantity.getText().toString());
+                        ProductDetailActivity.this.startActivity(intent);
                     }
                 });
 

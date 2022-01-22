@@ -7,11 +7,14 @@ public class ShippingMethod {
     private String name;
     private String image;
     private Integer price;
+    private String estimation;
 
     public ShippingMethod(DataSnapshot shippingMethodSnapshot) {
-        this.id = Integer.parseInt(shippingMethodSnapshot.child("id").getValue().toString());
+        this.id = Integer.parseInt(shippingMethodSnapshot.getKey());
         this.name = shippingMethodSnapshot.child("name").getValue().toString();
         this.image = shippingMethodSnapshot.child("image").getValue().toString();
+        this.price = Integer.parseInt(shippingMethodSnapshot.child("price").getValue().toString());
+        this.estimation = shippingMethodSnapshot.child("estimation").getValue().toString();
     }
 
     public ShippingMethod(Integer id, String name, String image, Integer price) {
@@ -19,6 +22,14 @@ public class ShippingMethod {
         this.name = name;
         this.image = image;
         this.price = price;
+    }
+
+    public ShippingMethod(Integer id, String name, String image, Integer price, String estimation) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.estimation = estimation;
     }
 
     public int getId() {
@@ -55,5 +66,13 @@ public class ShippingMethod {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getEstimation() {
+        return estimation;
+    }
+
+    public void setEstimation(String estimation) {
+        this.estimation = estimation;
     }
 }

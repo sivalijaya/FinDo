@@ -150,7 +150,7 @@ public class CheckOrderActivity extends AppCompatActivity {
 
                         tv_product_name.setText(transaction.getProduct().getName());
                         tv_product_price.setText(decimalFormat.format(transaction.getProduct().getPrice()));
-                        tv_product_pricedetail.setText(decimalFormat.format(transaction.getProduct().getPrice()));
+                        tv_product_pricedetail.setText(decimalFormat.format(transaction.getProduct().getPrice() * transaction.getQuantity()));
                         Picasso.get().load(transaction.getProduct().getPhoto().get(0)).into(iv_product_image);
                         int totalPrice = (transaction.getProduct().getPrice() * transaction.getQuantity()) + transaction.getShipping_method().getPrice();
 
