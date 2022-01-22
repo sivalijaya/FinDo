@@ -97,7 +97,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 btn_minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (Integer.parseInt(ed_quantity.getText().toString()) == 0) {
+                        if (Integer.parseInt(ed_quantity.getText().toString()) <= 1) {
 
                         } else {
                             int count = Integer.parseInt(ed_quantity.getText().toString()) - 1;
@@ -114,8 +114,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (ed_quantity.getText().toString().isEmpty() || (ed_quantity.getText().toString().startsWith("0") && ed_quantity.getText().toString().length() >= 2)) {
-                            ed_quantity.setText("0");
+                        if (ed_quantity.getText().toString().isEmpty() || (ed_quantity.getText().toString().startsWith("0") && ed_quantity.getText().toString().length() >= 1)) {
+                            ed_quantity.setText("1");
                         } else if (Integer.parseInt(ed_quantity.getText().toString()) > product.getStock()) {
                             ed_quantity.setText(String.valueOf(product.getStock()));
                             ed_quantity.clearFocus();

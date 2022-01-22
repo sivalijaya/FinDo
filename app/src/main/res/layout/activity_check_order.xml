@@ -76,8 +76,7 @@
                 android:layout_marginVertical="20dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -235,9 +234,9 @@
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_orderstatus_ordercreated" />
+                                android:src="@drawable/ic_orderstatus_ordercreated1" />
 
                             <TextView
                                 android:id="@+id/orderCreated"
@@ -269,7 +268,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_orderstatus_paymentaccepted" />
+                                android:src="@drawable/ic_orderstatus_paymentaccepted1" />
 
                             <TextView
                                 android:id="@+id/paymentAccepted"
@@ -286,7 +285,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="8dp"
                                 android:gravity="center"
-                                android:text="Payment Accepted"
+                                android:text="Payment Success"
                                 android:textColor="@color/black"
                                 android:textSize="12dp" />
                         </LinearLayout>
@@ -301,7 +300,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_orderstatus_orderontheway" />
+                                android:src="@drawable/ic_orderstatus_orderontheway1" />
 
                             <TextView
                                 android:id="@+id/orderOnTheWay"
@@ -333,7 +332,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_orderstatus_delivered" />
+                                android:src="@drawable/ic_orderstatus_delivered1" />
 
                             <TextView
                                 android:id="@+id/delivered"
