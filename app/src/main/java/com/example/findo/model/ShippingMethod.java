@@ -32,11 +32,11 @@ public class ShippingMethod {
         this.estimation = estimation;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,10 +54,6 @@ public class ShippingMethod {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getPrice() {

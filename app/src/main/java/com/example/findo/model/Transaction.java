@@ -21,12 +21,14 @@ public class Transaction {
         this.gift_wrapping = Boolean.parseBoolean(transactionSnapshot.child("gift_wrapping").getValue().toString());
         this.order_id = transactionSnapshot.child("gift_wrapping").getValue().toString();
 
-        ArrayList<String> product_photo = new ArrayList<>();
+        ArrayList<String> product_image = new ArrayList<>();
         Integer product_id = Integer.parseInt(transactionSnapshot.child("product").child("id").getValue().toString());
-        product_photo.add(transactionSnapshot.child("product").child("image").getValue().toString());
+        for (DataSnapshot productImageSnapshot : transactionSnapshot.child("product").child("images").getChildren()) {
+            product_image.add(productImageSnapshot.getValue().toString());
+        }
         String product_name = transactionSnapshot.child("product").child("name").getValue().toString();
         Integer product_price = Integer.parseInt(transactionSnapshot.child("product").child("price").getValue().toString());
-        this.product = new Product(product_id, product_name, product_price, product_photo);
+        this.product = new Product(product_id, product_name, product_price, product_image);
 
         Integer paymentMethod_id = Integer.parseInt(transactionSnapshot.child("payment_method").child("id").getValue().toString());
         String paymentMethod_name = transactionSnapshot.child("payment_method").child("name").getValue().toString();
@@ -56,6 +58,18 @@ public class Transaction {
         this.time_issued = transactionSnapshot.child("time_issued").getValue().toString();
         this.virtual_account = transactionSnapshot.child("virtual_account").getValue().toString();
         this.quantity = Integer.parseInt(transactionSnapshot.child("quantity").getValue().toString());
+    }
+
+    public Transaction(Boolean gift_wrapping, String order_id, ProductCategory product_category, Product product, Recipient recipient, ShippingMethod shipping_method, Integer status, String time_issued, Integer quantity) {
+        this.gift_wrapping = gift_wrapping;
+        this.order_id = order_id;
+        this.product_category = product_category;
+        this.product = product;
+        this.recipient = recipient;
+        this.shipping_method = shipping_method;
+        this.status = status;
+        this.time_issued = time_issued;
+        this.quantity = quantity;
     }
 
     public Boolean getGift_wrapping() {

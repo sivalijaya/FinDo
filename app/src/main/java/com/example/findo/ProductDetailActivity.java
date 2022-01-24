@@ -81,7 +81,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
                 productPrice.setText(decimalFormat.format(product.getPrice()));
                 productStock.setText(product.getStock().toString());
-                Picasso.get().load(product.getPhoto().get(0)).into(productImage);
+                Picasso.get().load(product.getImages().get(0)).into(productImage);
 
                 btn_plus.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -166,7 +166,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 tv_brand.setText(product.getBrand());
                 tv_shippingfrom.setText(product.getShippingFrom());
                 tv_description.setText(product.getDescription());
-                Picasso.get().load(product.getPhoto().get(0)).into(iv_product);
+                Picasso.get().load(product.getImages().get(0)).into(iv_product);
             }
 
             @Override

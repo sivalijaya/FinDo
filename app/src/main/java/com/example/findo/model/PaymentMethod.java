@@ -7,6 +7,12 @@ public class PaymentMethod {
     private String name;
     private String image;
 
+    public PaymentMethod(DataSnapshot paymentMethodSnapshot, String name) {
+        this.id = Integer.parseInt(paymentMethodSnapshot.getKey());
+        this.name = paymentMethodSnapshot.child("name").getValue().toString();
+        this.image = paymentMethodSnapshot.child("image").getValue().toString();
+    }
+
     public PaymentMethod(DataSnapshot paymentMethodSnapshot) {
         this.id = Integer.parseInt(paymentMethodSnapshot.child("id").getValue().toString());
         this.name = paymentMethodSnapshot.child("name").getValue().toString();

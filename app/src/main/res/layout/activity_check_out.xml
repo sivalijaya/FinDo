@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header_search">
@@ -48,6 +49,7 @@
                     android:text="Name*" />
 
                 <EditText
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -55,6 +57,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tv_error_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name Error"
@@ -68,6 +71,7 @@
                     android:text="Phone Number*" />
 
                 <EditText
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -75,6 +79,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tv_error_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email Error"
@@ -88,6 +93,7 @@
                     android:text="Email*" />
 
                 <EditText
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -95,6 +101,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tv_error_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name Error"
@@ -108,12 +115,14 @@
                     android:text="Address*" />
 
                 <EditText
+                    android:id="@+id/et_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPostalAddress"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tv_error_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name Error"
@@ -227,6 +236,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/tv_error_shipping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Name Error"
+                    android:textColor="@android:color/holo_red_light"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -423,6 +441,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

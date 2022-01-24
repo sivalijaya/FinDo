@@ -19,7 +19,9 @@ public class ProductCategory {
     private String name;
     private ArrayList<Product> product;
 
-    public ProductCategory() {
+    public ProductCategory(DataSnapshot categorySnapshot, String name) {
+        this.id = Integer.parseInt(categorySnapshot.getKey());
+        this.name = categorySnapshot.child("name").getValue().toString();
     }
 
     public ProductCategory(DataSnapshot categorySnapshot) {
@@ -42,7 +44,7 @@ public class ProductCategory {
                 Log.d("fdatabase", "onDataChange: " + error.getMessage());
             }
         };
-        mDatabase.addValueEventListener(postListener);
+        mDatabase.addListenerForSingleValueEvent(postListener);
         this.product = productList;
     }
 

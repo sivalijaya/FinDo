@@ -51,7 +51,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         txt_productTitle.setText(product.getName());
         txt_productPrice.setText(decimalFormat.format(product.getPrice()));
         txt_totalSold.setText(product.getSold().toString());
-        Picasso.get().load(product.getPhoto().get(0)).into(img_productImage);
+        Picasso.get().load(product.getImages().get(0)).into(img_productImage);
     }
 
     @Override

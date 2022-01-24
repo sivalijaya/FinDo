@@ -12,9 +12,10 @@ public class Product {
     private Integer price;
     private Integer stock;
     private String description;
-    private ArrayList<String> photo;
+    private ArrayList<String> images;
     private String brand;
     private String shippingFrom;
+    private Integer productCategoryId;
 
     public Product() {
     }
@@ -30,26 +31,35 @@ public class Product {
         }
         this.stock = Integer.parseInt(productSnapshot.child("stock").getValue().toString());
         this.description = productSnapshot.child("description").getValue().toString();
-        this.photo = productImages;
+        this.images = productImages;
         this.brand = productSnapshot.child("brand").getValue().toString();
         this.shippingFrom = productSnapshot.child("shippingFrom").getValue().toString();
+        this.productCategoryId = Integer.parseInt(productSnapshot.child("product_category_id").getValue().toString());
     }
 
-    public Product(Integer id, String name, Integer price, ArrayList<String> photo) {
+    public Product(Integer id, String name, Integer price, ArrayList<String> image) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.photo = photo;
+        this.images = image;
     }
 
-    public Product(Integer id, String name, Integer sold, Integer price, Integer stock, String description, ArrayList<String> photo, String gender) {
+    public Product(Integer id, String name, Integer sold, Integer price, Integer stock, String description, ArrayList<String> image, String gender) {
         this.id = id;
         this.name = name;
         this.sold = sold;
         this.price = price;
         this.stock = stock;
         this.description = description;
-        this.photo = photo;
+        this.images = image;
+    }
+
+    public Integer getProductCategoryId() {
+        return productCategoryId;
+    }
+
+    public void setProductCategoryId(Integer productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 
     public Integer getId() {
@@ -100,12 +110,12 @@ public class Product {
         this.description = description;
     }
 
-    public ArrayList<String> getPhoto() {
-        return photo;
+    public ArrayList<String> getImages() {
+        return images;
     }
 
-    public void setPhoto(ArrayList<String> photo) {
-        this.photo = photo;
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
     }
 
     public String getBrand() {
