@@ -42,7 +42,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity implements Pa
 
         Bundle bundle = getIntent().getExtras();
         String transactionKey = bundle.getString("transactionKey");
-        String transactionTotalPrice = bundle.getString("transactionTotalPrice");
+        Integer transactionTotalPrice = Integer.parseInt(bundle.getString("transactionTotalPrice"));
         String transactionPhoneNumber = bundle.getString("transactionPhoneNumber");
 
         btn_checkout = findViewById(R.id.btn_checkout);
