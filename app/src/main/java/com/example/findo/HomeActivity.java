@@ -185,6 +185,21 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull @org.jetbrains.annotations.NotNull String[] permissions, @androidx.annotation.NonNull @org.jetbrains.annotations.NotNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CAMERA_REQUEST_CODE);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
     public void categoryAdapterClick(int position) {
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchValue", mproductcategories.get(position).getName());
