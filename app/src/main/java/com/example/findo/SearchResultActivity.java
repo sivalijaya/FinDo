@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -153,8 +152,6 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
 
     @Override
     public void itemListAdapterClick(int position) {
-        //todo intent to product detail
-        Toast.makeText(SearchResultActivity.this, products.get(position).getId() + "System is busy!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ProductDetailActivity.class);
         intent.putExtra("productId", products.get(position).getId().toString());
         this.startActivity(intent);

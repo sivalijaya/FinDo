@@ -1,5 +1,8 @@
 package com.example.findo;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,6 +55,7 @@ public class CheckOrderActivity extends AppCompatActivity {
         textHeader.setText("Order Detail");
 
         TextView btnCheck = findViewById(R.id.btnCheck);
+        TextView btn_copyVA = findViewById(R.id.btn_copyVA);
         EditText etSearch = findViewById(R.id.et_search);
         tv_recipientname = findViewById(R.id.tv_recipientname);
         tv_recipientemail = findViewById(R.id.tv_recipientemail);
@@ -120,6 +124,15 @@ public class CheckOrderActivity extends AppCompatActivity {
             }
         });
 
+        btn_copyVA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("VirtualAccountNumber", transaction.getVirtual_account());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(CheckOrderActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void fetchDataFromFirebase(String orderId) {
@@ -152,7 +165,6 @@ public class CheckOrderActivity extends AppCompatActivity {
                         tv_product_price.setText(decimalFormat.format(transaction.getProduct().getPrice()));
                         tv_product_pricedetail.setText(decimalFormat.format(transaction.getProduct().getPrice() * transaction.getQuantity()));
                         Picasso.get().load(transaction.getProduct().getImages().get(0)).into(iv_product_image);
-                        int totalPrice = (transaction.getProduct().getPrice() * transaction.getQuantity()) + transaction.getShipping_method().getPrice();
 
                         Picasso.get().load(transaction.getPayment_method().getImage()).into(iv_payment_method);
 
@@ -160,12 +172,11 @@ public class CheckOrderActivity extends AppCompatActivity {
                         if (transaction.getGift_wrapping() == true) {
                             giftWrapping.setChecked(true);
                             tv_pricegiftwrapping.setText(decimalFormat.format(5000));
-                            totalPrice += 5000;
                         } else {
                             tv_pricegiftwrapping.setText("-");
                             giftWrapping.setChecked(false);
                         }
-                        total_price.setText(decimalFormat.format(totalPrice));
+                        total_price.setText(decimalFormat.format(transaction.getTotal_price()));
 
                         //set status
                         if (transaction.getStatus() == 0) {

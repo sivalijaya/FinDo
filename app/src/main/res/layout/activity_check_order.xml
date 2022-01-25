@@ -437,6 +437,7 @@
                         android:layout_marginTop="12dp"
                         android:background="@drawable/button_rectangle_yellowmain"
                         android:orientation="vertical"
+                        android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:visibility="gone">
 
@@ -444,10 +445,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Virtual Account"
+                            android:text="Virtual Account Number"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tv_virtualaccount"
@@ -460,6 +460,26 @@
                             android:textSize="24dp"
                             android:textStyle="bold" />
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp">
+
+                            <TextView
+                                android:id="@+id/btn_copyVA"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp"
+                                android:layout_gravity="end"
+                                android:background="@drawable/button_rectangle_white"
+                                android:gravity="center"
+                                android:text="Copy"
+                                android:textColor="@color/yellow_main_2"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout

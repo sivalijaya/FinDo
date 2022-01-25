@@ -14,9 +14,10 @@
 
         <ImageView
             android:id="@+id/iv_paymentmethod_image"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:adjustViewBounds="true"
+            android:maxWidth="40dp"
             android:src="@drawable/findo_logo" />
     </LinearLayout>
 
@@ -24,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_paymentmethod_name"

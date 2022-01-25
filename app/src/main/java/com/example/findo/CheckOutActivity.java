@@ -138,7 +138,7 @@ public class CheckOutActivity extends AppCompatActivity implements ShippingMetho
                     String orderId = dtf.format(nowDate) + String.format("%08d", number);
                     Recipient recipient = new Recipient(et_address.getText().toString(), et_email.getText().toString(), et_name.getText().toString(), et_phone.getText().toString());
 
-                    Transaction transaction = new Transaction(isGiftWrapping, orderId, productCategory, product, recipient, currentShippingMethod, 0, timeIssued, quantity);
+                    Transaction transaction = new Transaction(isGiftWrapping, orderId, productCategory, product, recipient, currentShippingMethod, 0, timeIssued, quantity, totalprice);
 
                     mDatabase = FirebaseDatabase.getInstance("https://findo-d605f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("transaction");
 
@@ -152,6 +152,7 @@ public class CheckOutActivity extends AppCompatActivity implements ShippingMetho
                     intent.putExtra("transactionTotalPrice", String.valueOf(totalprice));
                     intent.putExtra("transactionPhoneNumber", transaction.getRecipient().getPhone_number());
                     startActivity(intent);
+                    finish();
 
                 } else {
                     nestedScrollView.fullScroll(View.FOCUS_UP);

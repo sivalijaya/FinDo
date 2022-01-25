@@ -1,5 +1,6 @@
 package com.example.findo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -77,12 +78,15 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity implements Pa
 
                             mDatabase.updateChildren(transactionUpdate);
 
-                            // TODO: 25-Jan-22 intent to transaction successpage
+                            Intent intent = new Intent(ChoosePaymentMethodActivity.this, OrderCreatedActivity.class);
+                            intent.putExtra("transactionKey", transactionKey);
+                            startActivity(intent);
+                            finish();
                         }
 
                         @Override
                         public void onCancelled(@androidx.annotation.NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-
+                            Log.d("fdatabase", "onDataChange: " + error.getMessage());
                         }
                     });
                 }

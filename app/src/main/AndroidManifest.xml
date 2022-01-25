@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinDo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChoosePaymentMethodActivity"></activity>
+        <activity android:name=".OrderCreatedActivity" />
+        <activity android:name=".ChoosePaymentMethodActivity" />
         <activity android:name=".CheckOutActivity" />
         <activity android:name=".ProductDetailActivity" />
         <activity android:name=".PhotoResultActivity" />

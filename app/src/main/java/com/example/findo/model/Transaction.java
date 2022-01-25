@@ -16,10 +16,11 @@ public class Transaction {
     private String time_issued;
     private String virtual_account;
     private Integer quantity;
+    private Integer total_price;
 
     public Transaction(DataSnapshot transactionSnapshot) {
         this.gift_wrapping = Boolean.parseBoolean(transactionSnapshot.child("gift_wrapping").getValue().toString());
-        this.order_id = transactionSnapshot.child("gift_wrapping").getValue().toString();
+        this.order_id = transactionSnapshot.child("order_id").getValue().toString();
 
         ArrayList<String> product_image = new ArrayList<>();
         Integer product_id = Integer.parseInt(transactionSnapshot.child("product").child("id").getValue().toString());
@@ -58,9 +59,10 @@ public class Transaction {
         this.time_issued = transactionSnapshot.child("time_issued").getValue().toString();
         this.virtual_account = transactionSnapshot.child("virtual_account").getValue().toString();
         this.quantity = Integer.parseInt(transactionSnapshot.child("quantity").getValue().toString());
+        this.total_price = Integer.parseInt(transactionSnapshot.child("total_price").getValue().toString());
     }
 
-    public Transaction(Boolean gift_wrapping, String order_id, ProductCategory product_category, Product product, Recipient recipient, ShippingMethod shipping_method, Integer status, String time_issued, Integer quantity) {
+    public Transaction(Boolean gift_wrapping, String order_id, ProductCategory product_category, Product product, Recipient recipient, ShippingMethod shipping_method, Integer status, String time_issued, Integer quantity, Integer total_price) {
         this.gift_wrapping = gift_wrapping;
         this.order_id = order_id;
         this.product_category = product_category;
@@ -70,6 +72,7 @@ public class Transaction {
         this.status = status;
         this.time_issued = time_issued;
         this.quantity = quantity;
+        this.total_price = total_price;
     }
 
     public Boolean getGift_wrapping() {
@@ -158,5 +161,13 @@ public class Transaction {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Integer getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(Integer total_price) {
+        this.total_price = total_price;
     }
 }
