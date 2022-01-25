@@ -27,7 +27,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private List<ProductCategory> mProductCategories;
     private Context context;
     private CategoryAdapterListener mCategoryAdapterListener;
-    private int clickPosition;
 
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
