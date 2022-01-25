@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -37,7 +40,27 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.C
     private ArrayList<ProductCategory> mproductcategories = new ArrayList<>();
     private ArrayList<ProductCategory> temp = new ArrayList<>();
     private DatabaseReference mDatabase;
-    CategoryAdapter adapter;
+    private CategoryAdapter adapter;
+    private boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
