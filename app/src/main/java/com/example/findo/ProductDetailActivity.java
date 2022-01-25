@@ -63,7 +63,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         btn_buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ProductDetailActivity.this, "Buy Now!", Toast.LENGTH_SHORT).show();
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ProductDetailActivity.this, R.style.BottomSheetDialogTheme);
                 View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(
                         R.layout.layout_bottomsheet,

@@ -3,9 +3,7 @@ package com.example.findo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,14 +34,12 @@ public class PhotoResultActivity extends AppCompatActivity implements ArResultAd
         setContentView(R.layout.activity_photo_result);
 
         TextView textHeader = findViewById(R.id.textHeader);
-        LinearLayout btnCheck = findViewById(R.id.btnCheck);
         textHeader.setText("Photo Result");
 
         configureAndRunImageLabeler();
     }
 
     private void configureAndRunImageLabeler() {
-//        ImageLabeler labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS);
         FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance()
                 .getCloudImageLabeler();
 
@@ -52,7 +48,6 @@ public class PhotoResultActivity extends AppCompatActivity implements ArResultAd
 
         Bundle bundle = getIntent().getExtras();
         Bitmap finalPhoto = (Bitmap) bundle.get("data");
-//        InputImage image = InputImage.fromBitmap(finalPhoto, 0);
 
         ivCameraResult.setImageBitmap(finalPhoto);
 
@@ -75,24 +70,6 @@ public class PhotoResultActivity extends AppCompatActivity implements ArResultAd
                         Toast.makeText(PhotoResultActivity.this, "System is busy!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-//        labeler.process(image).addOnSuccessListener(new OnSuccessListener<List<ImageLabel>>() {
-//            @Override
-//            public void onSuccess(@NonNull @NotNull List<ImageLabel> imageLabels) {
-//                testi = imageLabels;
-//
-//                ArResultAdapter arResultAdapter = new ArResultAdapter(testi, ArResultActivity.this);
-//                rvArResult.setAdapter(arResultAdapter);
-//                rvArResult.setLayoutManager(new LinearLayoutManager(ArResultActivity.this));
-//
-//            }
-//        })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull @NotNull Exception e) {
-//                        Toast.makeText(ArResultActivity.this, "System is busy!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
     }
 
     @Override

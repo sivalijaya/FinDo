@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -84,7 +83,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void itemListAdapterClickFromParent(int parentPosition, int position) {
-        Toast.makeText(context.getApplicationContext(), mProductCategories.get(parentPosition).getProduct().get(position).getId() + " System is busy!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, ProductDetailActivity.class);
         intent.putExtra("productId", mProductCategories.get(parentPosition).getProduct().get(position).getId().toString());
         context.startActivity(intent);
