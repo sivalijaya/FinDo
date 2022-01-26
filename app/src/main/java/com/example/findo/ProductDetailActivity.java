@@ -56,7 +56,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         btn_arvisualize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ProductDetailActivity.this, "AR Visualize!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ProductDetailActivity.this, VisualizeActivity.class);
+                intent.putExtra("image_key", product.getImages().get(0));
+                startActivity(intent);
+                Toast.makeText(ProductDetailActivity.this, "AR Visualize!"+ product.getImages().get(0), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ProductDetailActivity.this, "AR Visualize!", Toast.LENGTH_SHORT).show();
             }
         });
 

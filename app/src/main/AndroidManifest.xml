@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,11 @@
         <activity android:name=".OrderCreatedActivity" />
         <activity android:name=".ChoosePaymentMethodActivity" />
         <activity android:name=".CheckOutActivity" />
+        <activity android:name=".VisualizeActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="locked"/>
         <activity android:name=".ProductDetailActivity" />
         <activity android:name=".PhotoResultActivity" />
         <activity android:name=".SearchResultActivity" />
@@ -31,6 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.ar.core" android:value="optional" />
     </application>
 
 </manifest>
