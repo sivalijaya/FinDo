@@ -15,19 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinDo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderCreatedActivity" />
-        <activity android:name=".ChoosePaymentMethodActivity" />
-        <activity android:name=".CheckOutActivity" />
+        <activity android:name=".OrderCreatedActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ChoosePaymentMethodActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CheckOutActivity" android:screenOrientation="portrait"/>
         <activity android:name=".VisualizeActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="locked"/>
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".PhotoResultActivity" />
-        <activity android:name=".SearchResultActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".CheckOrderActivity" />
+        <activity android:name=".ProductDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PhotoResultActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SearchResultActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CheckOrderActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"

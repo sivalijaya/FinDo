@@ -36,6 +36,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
     private DatabaseReference mDatabase;
     private int width = 0;
     private ItemListAdapter adapter;
+    private LinearLayout empty_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
         ImageView btn_priceup_imageview = findViewById(R.id.btn_priceup_imageview);
         TextView btn_pricedown_text = findViewById(R.id.btn_pricedown_text);
         TextView btn_priceup_text = findViewById(R.id.btn_priceup_text);
-
+        empty_layout = findViewById(R.id.empty_layout);
 
         tv_title_result.setText(bundle.getString("searchValue"));
 
@@ -173,6 +174,10 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                         products.add(product);
                     }
                 }
+                if (!products.isEmpty()) {
+                    empty_layout.setVisibility(View.GONE);
+                }
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -196,6 +201,9 @@ public class SearchResultActivity extends AppCompatActivity implements ItemListA
                         Product product = new Product(productSnapshot);
                         products.add(product);
                     }
+                }
+                if (!products.isEmpty()) {
+                    empty_layout.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
             }
