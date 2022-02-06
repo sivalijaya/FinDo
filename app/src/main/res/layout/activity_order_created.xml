@@ -32,7 +32,7 @@
             android:paddingTop="16dp"
             android:text="Checkout Success"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tips: Save the OrderId to tracking your order"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:text="OrderId"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/tv_orderid"
@@ -70,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:text="2022012512312312"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                         android:gravity="center"
                         android:text="Copy"
                         android:textColor="@color/yellow_main_2"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -170,7 +171,7 @@
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="24dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
